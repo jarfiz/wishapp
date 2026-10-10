@@ -33,7 +33,7 @@ export function AppShell({
   const [quickAddOpen, setQuickAddOpen] = React.useState(false);
 
   return (
-    <div className="flex min-h-screen bg-zinc-50/50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 antialiased font-sans">
+    <div className="flex min-h-screen bg-ambient-mesh text-slate-900 dark:text-slate-100 antialiased font-sans">
       <Toaster position="top-right" richColors />
 
       {/* Desktop Sidebar */}
@@ -48,10 +48,10 @@ export function AppShell({
             className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <div className="relative flex w-64 max-w-xs flex-1 flex-col bg-white dark:bg-zinc-950 shadow-2xl animate-in slide-in-from-left duration-200">
+          <div className="relative flex w-64 max-w-xs flex-1 flex-col bg-card border-r border-border shadow-2xl animate-in slide-in-from-left duration-200">
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="absolute right-3 top-4 rounded-md p-1.5 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+              className="absolute right-3 top-4 rounded-lg p-1.5 text-muted-foreground hover:text-foreground"
             >
               <X className="h-5 w-5" />
             </button>

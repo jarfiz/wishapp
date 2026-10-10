@@ -81,13 +81,13 @@ function PurchaseFormContent({
       </DialogHeader>
 
       <form onSubmit={handleConfirm} className="space-y-4">
-        <div className="rounded-xl border border-zinc-200/80 bg-zinc-50 p-3.5 dark:border-zinc-800 dark:bg-zinc-900/60">
-          <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 text-sm">
+        <div className="rounded-2xl border border-border/80 bg-muted/40 p-4">
+          <h4 className="font-semibold text-foreground text-sm">
             {item.name}
           </h4>
-          <p className="text-xs text-zinc-500 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             Original estimate:{" "}
-            <span className="font-medium text-zinc-700 dark:text-zinc-300">
+            <span className="font-semibold text-foreground">
               {item.estimatedPrice
                 ? formatMoney(item.estimatedPrice, currency)
                 : "Not set"}
@@ -108,7 +108,7 @@ function PurchaseFormContent({
             onChange={(e) => setActualPrice(e.target.value)}
             autoFocus
           />
-          <p className="text-[11px] text-zinc-400">
+          <p className="text-[11px] text-muted-foreground">
             Your original estimate will be preserved. This records your real spending.
           </p>
         </div>

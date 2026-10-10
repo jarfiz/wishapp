@@ -112,10 +112,10 @@ export function QuickAddDialog({
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="wish-priority">Priority</Label>
+              <Label htmlFor="wish-priority" className="text-xs font-semibold text-slate-700 dark:text-slate-300">Priority</Label>
               <select
                 id="wish-priority"
-                className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+                className="flex h-9.5 w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-100"
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as "low" | "medium" | "high")}
               >
@@ -128,10 +128,10 @@ export function QuickAddDialog({
 
           {categories.length > 0 ? (
             <div className="space-y-1.5">
-              <Label htmlFor="wish-category">Category</Label>
+              <Label htmlFor="wish-category" className="text-xs font-semibold text-slate-700 dark:text-slate-300">Category</Label>
               <select
                 id="wish-category"
-                className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+                className="flex h-9.5 w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-100"
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
               >

@@ -92,33 +92,33 @@ export function VisionBoardView({
   return (
     <div className="space-y-8">
       {/* Vision Board Header */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-violet-950 via-indigo-950 to-slate-950 p-6 sm:p-10 text-white shadow-xl">
+      <div className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-gradient-to-br from-white via-slate-50/50 to-indigo-50/30 p-6 sm:p-10 shadow-sm dark:border-white/[0.08] dark:bg-gradient-to-br dark:from-[#131622] dark:via-[#0F111A] dark:to-[#0A0B10] dark:shadow-2xl transition-all">
+        {/* Subtle luminous ambient mesh glow */}
+        <div className="pointer-events-none absolute -top-24 right-1/4 h-64 w-96 rounded-full bg-indigo-500/10 blur-3xl dark:bg-indigo-500/20" />
+        <div className="pointer-events-none absolute -bottom-24 right-10 h-64 w-64 rounded-full bg-violet-500/10 blur-3xl dark:bg-violet-500/15" />
+
         <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div className="space-y-2 max-w-xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-indigo-500/20 px-3 py-1 text-xs font-semibold text-indigo-200 border border-indigo-400/20 backdrop-blur-md">
-              <Sparkles className="h-3.5 w-3.5 text-amber-300" />
+          <div className="space-y-2.5 max-w-xl">
+            <div className="inline-flex items-center gap-2 rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-700 dark:text-indigo-300 border border-indigo-500/20 backdrop-blur-md">
+              <Sparkles className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400" />
               <span>Personal Aspiration Canvas</span>
             </div>
-            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
+            <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
               My Vision Board
             </h1>
-            <p className="text-xs sm:text-sm text-indigo-200/90 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
               Surround yourself with the future you are building. Manifest through clarity, intentional savings, and consistent daily execution.
             </p>
           </div>
 
           <Button
             onClick={() => setAddDialogOpen(true)}
-            className="bg-white text-indigo-950 hover:bg-zinc-100 shadow-md font-semibold gap-1.5 cursor-pointer shrink-0"
+            className="gap-2 shadow-md shadow-indigo-500/20 cursor-pointer shrink-0"
           >
-            <Plus className="h-4 w-4 text-indigo-600" />
+            <Plus className="h-4 w-4" />
             <span>Pin Dream to Board</span>
           </Button>
         </div>
-
-        {/* Ambient glow */}
-        <div className="absolute -right-20 -bottom-20 h-72 w-72 rounded-full bg-violet-600/20 blur-3xl" />
-        <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-indigo-600/20 blur-3xl" />
       </div>
 
       {/* Board Visual Grid */}
@@ -128,9 +128,9 @@ export function VisionBoardView({
           {boardGoals.map((goal) => (
             <div
               key={goal.id}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-zinc-200/80 bg-white shadow-xs transition-all duration-300 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xs transition-all duration-300 hover:shadow-xl dark:border-white/[0.07] dark:bg-[#11131B] dark:hover:border-white/[0.14]"
             >
-              <div className="relative aspect-square w-full overflow-hidden bg-zinc-100 dark:bg-zinc-950">
+              <div className="relative aspect-square w-full overflow-hidden bg-slate-100 dark:bg-[#0A0B10]">
                 {goal.coverImageUrl ? (
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img
@@ -139,9 +139,9 @@ export function VisionBoardView({
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
-                  <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-tr from-indigo-900 to-indigo-950 text-indigo-300">
+                  <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-slate-50 via-slate-100 to-indigo-50/30 dark:from-[#131622] dark:via-[#0F111A] dark:to-[#0A0B10] text-indigo-400 dark:text-indigo-500/70">
                     <Compass className="h-16 w-16 stroke-[1.2] opacity-80" />
-                    <span className="mt-2 text-xs font-bold uppercase tracking-widest text-indigo-200">
+                    <span className="mt-2 text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
                       Life Quest
                     </span>
                   </div>
@@ -150,7 +150,7 @@ export function VisionBoardView({
                 {/* Remove button */}
                 <button
                   onClick={() => handleRemoveGoal(goal.id, goal.title)}
-                  className="absolute top-3 right-3 rounded-full bg-black/60 p-2 text-white/80 hover:bg-black hover:text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                  className="absolute top-3 right-3 rounded-full bg-black/60 p-2 text-white/80 hover:bg-black hover:text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer border border-white/10"
                   title="Remove from vision board"
                 >
                   <Trash2 className="h-4 w-4" />
@@ -166,23 +166,23 @@ export function VisionBoardView({
 
               <div className="flex flex-1 flex-col justify-between p-5">
                 <div>
-                  <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50 line-clamp-1">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white line-clamp-1">
                     {goal.title}
                   </h3>
                   {goal.description ? (
-                    <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2">
+                    <p className="mt-1 text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
                       {goal.description}
                     </p>
                   ) : null}
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs">
-                  <span className="font-semibold text-indigo-600 dark:text-indigo-400">
+                <div className="mt-4 pt-3.5 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between text-xs">
+                  <span className="font-semibold text-indigo-600 dark:text-indigo-400 tabular-nums">
                     {goal.completedMilestones || 0} / {goal.totalMilestones || 0} Milestones
                   </span>
                   <Link
                     href={`/goals/${goal.id}`}
-                    className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+                    className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-medium transition-colors"
                   >
                     View Quest →
                   </Link>
@@ -195,9 +195,9 @@ export function VisionBoardView({
           {boardWishes.map((wish) => (
             <div
               key={wish.id}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-zinc-200/80 bg-white shadow-xs transition-all duration-300 hover:shadow-xl dark:border-zinc-800/80 dark:bg-zinc-900/60"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xs transition-all duration-300 hover:shadow-xl dark:border-white/[0.07] dark:bg-[#11131B] dark:hover:border-white/[0.14]"
             >
-              <div className="relative aspect-square w-full overflow-hidden bg-zinc-100 dark:bg-zinc-950">
+              <div className="relative aspect-square w-full overflow-hidden bg-slate-100 dark:bg-[#0A0B10]">
                 {wish.imageUrl ? (
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img
@@ -206,9 +206,9 @@ export function VisionBoardView({
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
-                  <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-tr from-violet-900 to-indigo-950 text-violet-300">
+                  <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-slate-50 via-slate-100 to-indigo-50/30 dark:from-[#131622] dark:via-[#0F111A] dark:to-[#0A0B10] text-purple-400 dark:text-purple-500/70">
                     <Gift className="h-16 w-16 stroke-[1.2] opacity-80" />
-                    <span className="mt-2 text-xs font-bold uppercase tracking-widest text-violet-200">
+                    <span className="mt-2 text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
                       Wish
                     </span>
                   </div>
@@ -217,7 +217,7 @@ export function VisionBoardView({
                 {/* Remove button */}
                 <button
                   onClick={() => handleRemoveWish(wish.id, wish.name)}
-                  className="absolute top-3 right-3 rounded-full bg-black/60 p-2 text-white/80 hover:bg-black hover:text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                  className="absolute top-3 right-3 rounded-full bg-black/60 p-2 text-white/80 hover:bg-black hover:text-white backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer border border-white/10"
                   title="Remove from vision board"
                 >
                   <Trash2 className="h-4 w-4" />
@@ -233,7 +233,7 @@ export function VisionBoardView({
 
               <div className="flex flex-1 flex-col justify-between p-5">
                 <div>
-                  <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50 line-clamp-1">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white line-clamp-1">
                     {wish.name}
                   </h3>
                   {wish.notes ? (
@@ -241,21 +241,21 @@ export function VisionBoardView({
                       &ldquo;{wish.notes}&rdquo;
                     </p>
                   ) : wish.description ? (
-                    <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400 line-clamp-2">
+                    <p className="mt-1 text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
                       {wish.description}
                     </p>
                   ) : null}
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs">
-                  <span className="font-bold text-zinc-900 dark:text-zinc-100 tabular-nums">
+                <div className="mt-4 pt-3.5 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between text-xs">
+                  <span className="font-bold text-slate-900 dark:text-slate-100 tabular-nums">
                     {wish.estimatedPrice
                       ? formatMoney(wish.estimatedPrice, currency)
                       : "Price not set"}
                   </span>
                   <Link
                     href="/wishlist"
-                    className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+                    className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-medium transition-colors"
                   >
                     View Wish →
                   </Link>
@@ -265,18 +265,18 @@ export function VisionBoardView({
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-zinc-200/90 bg-white/50 p-16 text-center dark:border-zinc-800/80 dark:bg-zinc-900/30">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400">
-            <Eye className="h-8 w-8" />
+        <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-slate-200 dark:border-white/[0.09] bg-white/40 dark:bg-[#11131B]/40 p-16 text-center">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 shadow-xs">
+            <Eye className="h-8 w-8 stroke-[1.5]" />
           </div>
-          <h3 className="mt-4 text-lg font-bold text-zinc-900 dark:text-zinc-100">
+          <h3 className="mt-4 text-lg font-bold text-slate-900 dark:text-white">
             Your Vision Board is currently empty
           </h3>
-          <p className="mt-2 max-w-md text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <p className="mt-2 max-w-md text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
             Feature your favorite goals and wishlist items here to create a personal visual board of what you are working toward.
           </p>
           <div className="mt-6">
-            <Button onClick={() => setAddDialogOpen(true)} className="gap-1.5">
+            <Button onClick={() => setAddDialogOpen(true)} className="gap-1.5 shadow-sm shadow-indigo-500/20">
               <Plus className="h-4 w-4" />
               <span>Pin Your First Dream</span>
             </Button>
@@ -299,11 +299,11 @@ export function VisionBoardView({
 
           <div className="space-y-4 py-2">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+              <label className="text-xs font-semibold text-muted-foreground">
                 Select Wishlist Item
               </label>
               <select
-                className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+                className="flex h-10 w-full rounded-xl border border-input bg-card/60 backdrop-blur-sm px-3.5 py-1 text-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/30 text-foreground cursor-pointer"
                 value={selectedWishToAdd}
                 onChange={(e) => setSelectedWishToAdd(e.target.value)}
               >
@@ -317,11 +317,11 @@ export function VisionBoardView({
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+              <label className="text-xs font-semibold text-muted-foreground">
                 Select Life Goal
               </label>
               <select
-                className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+                className="flex h-10 w-full rounded-xl border border-input bg-card/60 backdrop-blur-sm px-3.5 py-1 text-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/30 text-foreground cursor-pointer"
                 value={selectedGoalToAdd}
                 onChange={(e) => setSelectedGoalToAdd(e.target.value)}
               >

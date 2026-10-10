@@ -54,7 +54,7 @@ export function TabsList({
   return (
     <div
       className={cn(
-        "inline-flex h-9 items-center justify-center rounded-lg bg-zinc-100 p-1 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400",
+        "inline-flex h-10 items-center justify-center rounded-xl bg-muted/60 p-1 text-muted-foreground border border-border/60 backdrop-blur-sm",
         className
       )}
     >
@@ -82,10 +82,10 @@ export function TabsTrigger({
       type="button"
       onClick={() => context.setActiveTab(value)}
       className={cn(
-        "inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-xs sm:text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 disabled:pointer-events-none disabled:opacity-50 select-none cursor-pointer",
+        "inline-flex items-center justify-center whitespace-nowrap rounded-lg px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/30 disabled:pointer-events-none disabled:opacity-50 select-none cursor-pointer",
         isSelected
-          ? "bg-white text-zinc-950 shadow-xs dark:bg-zinc-900 dark:text-zinc-100"
-          : "hover:text-zinc-900 dark:hover:text-zinc-100",
+          ? "bg-card text-foreground shadow-xs font-semibold border border-border/80"
+          : "hover:text-foreground hover:bg-card/40",
         className
       )}
     >

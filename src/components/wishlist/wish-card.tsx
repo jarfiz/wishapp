@@ -125,10 +125,10 @@ export function WishCard({
     return (
       <div
         className={cn(
-          "group flex items-center justify-between rounded-xl border p-3.5 transition-all",
+          "group flex items-center justify-between rounded-xl border p-3.5 transition-all duration-150",
           isPurchased
-            ? "border-emerald-200/60 bg-emerald-50/20 dark:border-emerald-900/40 dark:bg-emerald-950/10"
-            : "border-zinc-200/80 bg-white hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/60"
+            ? "border-emerald-500/30 bg-emerald-50/20 dark:border-emerald-500/20 dark:bg-emerald-950/10"
+            : "border-slate-200/80 bg-white hover:border-slate-300 dark:border-white/[0.07] dark:bg-[#11131B] dark:hover:border-white/[0.14]"
         )}
       >
         <div className="flex items-center gap-3 min-w-0">
@@ -137,10 +137,10 @@ export function WishCard({
             onClick={handleTogglePurchase}
             title={isPurchased ? "Mark as not purchased" : "Mark as purchased"}
             className={cn(
-              "flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-colors cursor-pointer",
+              "flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-all cursor-pointer",
               isPurchased
-                ? "border-emerald-600 bg-emerald-600 text-white"
-                : "border-zinc-300 hover:border-indigo-500 dark:border-zinc-700"
+                ? "border-emerald-600 bg-emerald-600 text-white shadow-xs shadow-emerald-500/30"
+                : "border-slate-300 hover:border-indigo-500 dark:border-white/[0.15] dark:hover:border-indigo-400"
             )}
           >
             {isPurchased ? <Check className="h-3.5 w-3.5 stroke-[3]" /> : null}
@@ -149,14 +149,14 @@ export function WishCard({
           <div className="flex flex-col truncate">
             <span
               className={cn(
-                "truncate text-sm font-semibold text-zinc-900 dark:text-zinc-100",
-                isPurchased && "line-through text-zinc-400 dark:text-zinc-500"
+                "truncate text-sm font-semibold text-slate-900 dark:text-slate-100",
+                isPurchased && "line-through text-slate-400 dark:text-slate-500"
               )}
             >
               {item.name}
             </span>
-            <div className="flex items-center gap-2 text-xs text-zinc-500">
-              <span className="font-medium text-zinc-700 dark:text-zinc-300 tabular-nums">
+            <div className="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
+              <span className="font-semibold text-slate-700 dark:text-slate-300 tabular-nums">
                 {item.estimatedPrice
                   ? formatMoney(item.estimatedPrice, currency)
                   : "Price not set"}
@@ -179,9 +179,9 @@ export function WishCard({
           ) : null}
           <button
             onClick={() => onEdit(item)}
-            className="rounded p-1 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 cursor-pointer"
+            className="rounded-lg p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:hover:bg-white/[0.06] dark:hover:text-slate-200 cursor-pointer transition-colors"
           >
-            <Edit className="h-4 w-4" />
+            <Edit className="h-3.5 w-3.5" />
           </button>
         </div>
       </div>
@@ -191,25 +191,25 @@ export function WishCard({
   return (
     <div
       className={cn(
-        "group relative flex flex-col justify-between overflow-hidden rounded-2xl border transition-all duration-200 hover:shadow-md",
+        "group relative flex flex-col justify-between overflow-hidden rounded-2xl border transition-all duration-300 hover:shadow-xl",
         isPurchased
-          ? "border-emerald-200/80 bg-emerald-50/20 dark:border-emerald-900/40 dark:bg-emerald-950/15"
-          : "border-zinc-200/80 bg-white hover:border-zinc-300 dark:border-zinc-800/80 dark:bg-zinc-900/50"
+          ? "border-emerald-500/30 bg-emerald-50/15 dark:border-emerald-500/20 dark:bg-emerald-950/10"
+          : "border-slate-200/80 bg-white hover:border-slate-300 dark:border-white/[0.07] dark:bg-[#11131B] dark:hover:border-white/[0.14]"
       )}
     >
       {/* Top Media / Thumbnail */}
-      <div className="relative aspect-video w-full overflow-hidden bg-zinc-100 dark:bg-zinc-950">
+      <div className="relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-[#0A0B10]">
         {item.imageUrl ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src={item.imageUrl}
             alt={item.name}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-zinc-50 to-zinc-100/60 dark:from-zinc-900 dark:to-zinc-950 text-zinc-300 dark:text-zinc-700">
-            <Gift className="h-10 w-10 stroke-[1.2] opacity-80" />
-            <span className="mt-1 text-[11px] font-medium tracking-wider uppercase text-zinc-400 dark:text-zinc-600">
+          <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-slate-50 via-slate-100 to-indigo-50/30 dark:from-[#131622] dark:via-[#0F111A] dark:to-[#0A0B10] text-slate-400 dark:text-slate-600">
+            <Gift className="h-10 w-10 stroke-[1.2] opacity-70" />
+            <span className="mt-1.5 text-[10px] font-bold tracking-widest uppercase text-slate-400 dark:text-slate-500">
               Daymark Wish
             </span>
           </div>
@@ -217,8 +217,8 @@ export function WishCard({
 
         {/* Vision board star pill */}
         {item.onVisionBoard ? (
-          <div className="absolute top-2.5 left-2.5 flex items-center gap-1 rounded-full bg-indigo-900/80 px-2 py-0.5 text-[10px] font-medium text-white shadow-xs backdrop-blur-sm">
-            <Sparkles className="h-3 w-3 text-amber-300" />
+          <div className="absolute top-2.5 left-2.5 flex items-center gap-1 rounded-full bg-slate-900/85 px-2.5 py-0.5 text-[10px] font-semibold text-white shadow-sm backdrop-blur-md border border-white/15">
+            <Sparkles className="h-3 w-3 text-amber-400" />
             <span>Vision Board</span>
           </div>
         ) : null}
@@ -226,7 +226,7 @@ export function WishCard({
         {/* Priority Badge */}
         {item.priority && item.priority !== "medium" ? (
           <div className="absolute bottom-2.5 left-2.5">
-            <Badge variant={priorityColor} className="capitalize text-[10px] py-0">
+            <Badge variant={priorityColor} className="capitalize text-[10px] py-0 shadow-xs">
               {item.priority}
             </Badge>
           </div>
@@ -237,29 +237,29 @@ export function WishCard({
           <button
             type="button"
             onClick={() => setShowMenu(!showMenu)}
-            className="rounded-full bg-white/90 p-1.5 text-zinc-700 shadow-sm backdrop-blur-md transition-colors hover:bg-white dark:bg-zinc-900/90 dark:text-zinc-200 dark:hover:bg-zinc-800 cursor-pointer"
+            className="rounded-full bg-white/90 p-1.5 text-slate-700 shadow-sm backdrop-blur-md transition-colors hover:bg-white dark:bg-black/60 dark:text-slate-200 dark:hover:bg-black/80 dark:border dark:border-white/10 cursor-pointer"
           >
             <MoreVertical className="h-4 w-4" />
           </button>
 
           {showMenu ? (
-            <div className="absolute right-0 top-8 z-40 w-44 rounded-xl border border-zinc-200 bg-white p-1.5 shadow-xl dark:border-zinc-800 dark:bg-zinc-900 animate-in fade-in zoom-in-95">
+            <div className="absolute right-0 top-8 z-40 w-44 rounded-xl border border-slate-200 bg-white p-1.5 shadow-xl dark:border-white/[0.08] dark:bg-[#141722] animate-in fade-in zoom-in-95">
               <button
                 onClick={() => {
                   setShowMenu(false);
                   onEdit(item);
                 }}
-                className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800 cursor-pointer"
+                className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/[0.06] cursor-pointer"
               >
-                <Edit className="h-3.5 w-3.5 text-zinc-400" />
+                <Edit className="h-3.5 w-3.5 text-slate-400" />
                 <span>Edit Details</span>
               </button>
 
               <button
                 onClick={handleToggleVisionBoard}
-                className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800 cursor-pointer"
+                className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/[0.06] cursor-pointer"
               >
-                <Eye className="h-3.5 w-3.5 text-zinc-400" />
+                <Eye className="h-3.5 w-3.5 text-slate-400" />
                 <span>{item.onVisionBoard ? "Remove from Board" : "Add to Board"}</span>
               </button>
 
@@ -268,9 +268,9 @@ export function WishCard({
                   href={item.productUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                  className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/[0.06]"
                 >
-                  <ExternalLink className="h-3.5 w-3.5 text-zinc-400" />
+                  <ExternalLink className="h-3.5 w-3.5 text-slate-400" />
                   <span>Visit Link</span>
                 </a>
               ) : null}
@@ -278,18 +278,18 @@ export function WishCard({
               {isPurchased ? (
                 <button
                   onClick={handleTogglePurchase}
-                  className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800 cursor-pointer"
+                  className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/[0.06] cursor-pointer"
                 >
-                  <RotateCcw className="h-3.5 w-3.5 text-zinc-400" />
+                  <RotateCcw className="h-3.5 w-3.5 text-slate-400" />
                   <span>Undo Purchase</span>
                 </button>
               ) : null}
 
               <button
                 onClick={handleArchive}
-                className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800 cursor-pointer"
+                className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/[0.06] cursor-pointer"
               >
-                <Archive className="h-3.5 w-3.5 text-zinc-400" />
+                <Archive className="h-3.5 w-3.5 text-slate-400" />
                 <span>{isArchived ? "Restore Item" : "Archive"}</span>
               </button>
 
@@ -306,13 +306,13 @@ export function WishCard({
       </div>
 
       {/* Card Content */}
-      <div className="flex flex-1 flex-col justify-between p-4">
+      <div className="flex flex-1 flex-col justify-between p-4.5">
         <div>
           <div className="flex items-start justify-between gap-2">
             <h3
               className={cn(
-                "font-semibold text-zinc-900 dark:text-zinc-100 text-base line-clamp-1",
-                isPurchased && "line-through text-zinc-400 dark:text-zinc-500"
+                "font-bold text-slate-900 dark:text-white text-base line-clamp-1",
+                isPurchased && "line-through text-slate-400 dark:text-slate-500"
               )}
             >
               {item.name}
@@ -320,7 +320,7 @@ export function WishCard({
           </div>
 
           {item.description ? (
-            <p className="mt-1 line-clamp-2 text-xs text-zinc-500 dark:text-zinc-400">
+            <p className="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
               {item.description}
             </p>
           ) : null}
@@ -332,13 +332,13 @@ export function WishCard({
           ) : null}
         </div>
 
-        {/* Footer info & Purchase Checkbox */}
-        <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between">
+        {/* Footer info & Purchase Button */}
+        <div className="mt-4 pt-3.5 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between">
           <div className="flex flex-col">
-            <span className="text-[11px] font-medium uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
               {isPurchased ? "Spent" : "Estimate"}
             </span>
-            <span className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-50 tabular-nums">
+            <span className="text-sm sm:text-base font-black text-slate-900 dark:text-white tabular-nums">
               {isPurchased
                 ? item.actualPrice
                   ? formatMoney(item.actualPrice, currency)
@@ -355,8 +355,8 @@ export function WishCard({
             className={cn(
               "flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-semibold transition-all cursor-pointer shadow-xs",
               isPurchased
-                ? "bg-emerald-600 text-white hover:bg-emerald-700"
-                : "border border-zinc-200 bg-zinc-50 text-zinc-700 hover:border-emerald-500 hover:text-emerald-700 dark:border-zinc-800 dark:bg-zinc-800/80 dark:text-zinc-300 dark:hover:border-emerald-500"
+                ? "bg-emerald-600 text-white shadow-emerald-600/25 hover:bg-emerald-500"
+                : "border border-slate-200 bg-slate-50/80 text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-slate-300 dark:hover:border-emerald-500/40 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400"
             )}
           >
             <Check className="h-3.5 w-3.5 stroke-[2.5]" />

@@ -9,7 +9,10 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
     | "success"
     | "warning"
     | "destructive"
-    | "indigo";
+    | "indigo"
+    | "purple"
+    | "emerald"
+    | "amber";
 }
 
 export function Badge({
@@ -19,24 +22,31 @@ export function Badge({
 }: BadgeProps) {
   const variantStyles = {
     default:
-      "border-transparent bg-zinc-900 text-zinc-50 dark:bg-zinc-100 dark:text-zinc-900",
+      "bg-slate-900 text-slate-50 dark:bg-slate-100 dark:text-slate-900 shadow-xs",
     secondary:
-      "border-transparent bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100",
-    outline: "text-zinc-950 dark:text-zinc-50 border-zinc-200 dark:border-zinc-800",
+      "bg-slate-100 text-slate-700 dark:bg-slate-800/80 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700/60",
+    outline:
+      "text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800/80 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xs",
     success:
-      "border-transparent bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-200/50 dark:border-emerald-800/40",
+      "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/25",
+    emerald:
+      "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/25",
     warning:
-      "border-transparent bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400 border border-amber-200/50 dark:border-amber-800/40",
+      "bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/25",
+    amber:
+      "bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/25",
     destructive:
-      "border-transparent bg-red-50 text-red-700 dark:bg-red-950/60 dark:text-red-400 border border-red-200/50 dark:border-red-800/40",
+      "bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/25",
     indigo:
-      "border-transparent bg-indigo-50 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-800/40",
+      "bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 border border-indigo-500/25",
+    purple:
+      "bg-purple-500/10 text-purple-700 dark:text-purple-400 border border-purple-500/25",
   }[variant];
 
   return (
     <div
       className={cn(
-        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 select-none",
+        "inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-wide transition-colors select-none",
         variantStyles,
         className
       )}

@@ -81,66 +81,67 @@ export function AchievementsView({
   return (
     <div className="space-y-8">
       {/* Journey Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-950 via-indigo-950 to-slate-950 p-6 sm:p-10 text-white shadow-xl">
+      <div className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-gradient-to-br from-white via-slate-50/50 to-amber-50/30 p-6 sm:p-10 shadow-sm dark:border-white/[0.08] dark:bg-gradient-to-br dark:from-[#141620] dark:via-[#10121B] dark:to-[#0A0B10] dark:shadow-2xl transition-all">
+        {/* Subtle luminous ambient mesh glow */}
+        <div className="pointer-events-none absolute -top-24 right-1/4 h-64 w-96 rounded-full bg-amber-500/10 blur-3xl dark:bg-amber-400/15" />
+        <div className="pointer-events-none absolute -bottom-24 right-10 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl dark:bg-indigo-500/15" />
+
         <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div className="space-y-2 max-w-xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/20 px-3 py-1 text-xs font-semibold text-amber-200 border border-amber-400/20 backdrop-blur-md">
-              <Trophy className="h-3.5 w-3.5 text-amber-300" />
-              <span>Personal Milestones & Achievements</span>
+          <div className="space-y-2.5 max-w-xl">
+            <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-700 dark:text-amber-300 border border-amber-500/20 backdrop-blur-md">
+              <Trophy className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400" />
+              <span>Personal Milestones & Achievement Hall</span>
             </div>
-            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
+            <h1 className="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
               Your Journey & Milestones
             </h1>
-            <p className="text-xs sm:text-sm text-amber-100/80 leading-relaxed">
-              A celebration of consistency, courage, and tangible dreams accomplished. Every achievement is earned by real action.
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
+              A celebration of consistency, courage, and tangible dreams accomplished. Every badge is permanently unlocked through genuine action.
             </p>
           </div>
 
-          <div className="flex items-center gap-4 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-400 text-amber-950 shadow-md">
+          <div className="flex items-center gap-4 bg-slate-50/80 dark:bg-white/[0.04] backdrop-blur-md p-4 rounded-2xl border border-slate-200/80 dark:border-white/[0.08] shadow-sm">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-tr from-amber-500 to-amber-400 text-slate-950 shadow-md font-bold">
               <Sparkles className="h-6 w-6" />
             </div>
             <div>
-              <span className="text-xs uppercase font-bold tracking-wider text-amber-200">
+              <span className="text-[10px] uppercase font-bold tracking-wider text-amber-600 dark:text-amber-400 block">
                 Total XP Earned
               </span>
-              <div className="text-2xl font-black text-white tabular-nums">
+              <div className="text-2xl font-black text-slate-900 dark:text-white tabular-nums">
                 {totalXp} XP
               </div>
             </div>
           </div>
         </div>
-
-        {/* Ambient glow */}
-        <div className="absolute -right-20 -bottom-20 h-72 w-72 rounded-full bg-amber-600/20 blur-3xl" />
       </div>
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60">
-          <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-white/[0.07] dark:bg-[#11131B] transition-colors">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             Achievement Badges
           </span>
-          <div className="mt-2 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+          <div className="mt-2 text-2xl font-black tracking-tight text-slate-900 dark:text-white">
             {unlockedAchievements.length} / {ALL_ACHIEVEMENTS_LIST.length} Unlocked
           </div>
         </div>
 
-        <div className="rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60">
-          <span className="text-xs font-medium uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-white/[0.07] dark:bg-[#11131B] transition-colors">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
             Completed Purchases
           </span>
-          <div className="mt-2 text-2xl font-bold tracking-tight text-emerald-600 dark:text-emerald-400">
-            {completedWishes.length} Dreams Acquired
+          <div className="mt-2 text-2xl font-black tracking-tight text-emerald-600 dark:text-emerald-400">
+            {completedWishes.length} Acquired
           </div>
         </div>
 
-        <div className="rounded-2xl border border-zinc-200/80 bg-white p-5 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60">
-          <span className="text-xs font-medium uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-white/[0.07] dark:bg-[#11131B] transition-colors">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
             Completed Life Quests
           </span>
-          <div className="mt-2 text-2xl font-bold tracking-tight text-indigo-600 dark:text-indigo-400">
-            {completedGoals.length} Quests Conquered
+          <div className="mt-2 text-2xl font-black tracking-tight text-indigo-600 dark:text-indigo-400">
+            {completedGoals.length} Conquered
           </div>
         </div>
       </div>
@@ -164,17 +165,17 @@ export function AchievementsView({
               return (
                 <div
                   key={ach.key}
-                  className={`relative flex items-start gap-4 rounded-2xl border p-5 transition-all ${
+                  className={`relative flex items-start gap-4 rounded-2xl border p-5 transition-all duration-200 ${
                     isUnlocked
-                      ? "border-amber-200/80 bg-gradient-to-br from-amber-50/40 via-white to-amber-50/20 shadow-xs dark:border-amber-900/40 dark:bg-zinc-900/80"
-                      : "border-zinc-200/60 bg-zinc-50/50 opacity-60 dark:border-zinc-800/60 dark:bg-zinc-900/20"
+                      ? "border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-white to-amber-500/5 shadow-xs dark:border-amber-400/25 dark:bg-[#141620]"
+                      : "border-slate-200/50 bg-slate-50/40 opacity-55 dark:border-white/[0.05] dark:bg-white/[0.02]"
                   }`}
                 >
                   <div
                     className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${
                       isUnlocked
-                        ? "bg-amber-100 text-amber-700 shadow-sm dark:bg-amber-950 dark:text-amber-400"
-                        : "bg-zinc-200 text-zinc-400 dark:bg-zinc-800 dark:text-zinc-500"
+                        ? "bg-amber-500/15 text-amber-600 shadow-xs dark:bg-amber-400/15 dark:text-amber-400 border border-amber-500/20"
+                        : "bg-slate-200/80 text-slate-400 dark:bg-white/[0.06] dark:text-slate-500"
                     }`}
                   >
                     {isUnlocked ? (
@@ -189,31 +190,31 @@ export function AchievementsView({
                       <h3
                         className={`text-sm font-bold truncate ${
                           isUnlocked
-                            ? "text-zinc-900 dark:text-zinc-100"
-                            : "text-zinc-500"
+                            ? "text-slate-900 dark:text-white"
+                            : "text-slate-500"
                         }`}
                       >
                         {ach.title}
                       </h3>
                       <Badge
-                        variant={isUnlocked ? "default" : "secondary"}
+                        variant={isUnlocked ? "amber" : "secondary"}
                         className="text-[10px] px-1.5 py-0"
                       >
                         +{ach.xp} XP
                       </Badge>
                     </div>
 
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                       {ach.description}
                     </p>
 
                     {isUnlocked ? (
-                      <p className="text-[11px] font-medium text-amber-700 dark:text-amber-400 pt-1">
+                      <p className="text-[11px] font-semibold text-amber-600 dark:text-amber-400 pt-1">
                         Unlocked on{" "}
                         {new Date(unlockInfo!.unlockedAt).toLocaleDateString()}
                       </p>
                     ) : (
-                      <p className="text-[11px] text-zinc-400 pt-1">
+                      <p className="text-[11px] text-slate-400 pt-1 font-medium">
                         Locked
                       </p>
                     )}
@@ -231,7 +232,7 @@ export function AchievementsView({
               {completedWishes.map((item) => (
                 <div
                   key={item.id}
-                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border border-zinc-200/80 bg-white p-4 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60"
+                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl border border-border/80 bg-card/60 backdrop-blur-sm p-4 shadow-xs"
                 >
                   <div className="flex items-center gap-3">
                     {item.imageUrl ? (
@@ -242,15 +243,15 @@ export function AchievementsView({
                         className="h-12 w-12 rounded-xl object-cover"
                       />
                     ) : (
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                         <CheckCircle2 className="h-6 w-6" />
                       </div>
                     )}
                     <div>
-                      <h3 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-zinc-100">
+                      <h3 className="text-sm sm:text-base font-bold text-foreground">
                         {item.name}
                       </h3>
-                      <p className="text-xs text-zinc-400">
+                      <p className="text-xs text-muted-foreground">
                         Purchased on{" "}
                         {item.purchasedAt
                           ? new Date(item.purchasedAt).toLocaleDateString()
@@ -261,7 +262,7 @@ export function AchievementsView({
 
                   <div className="flex items-center gap-4 text-right">
                     <div>
-                      <span className="text-[11px] uppercase font-medium text-zinc-400 block">
+                      <span className="text-[11px] uppercase font-medium text-muted-foreground block">
                         Actual Spending
                       </span>
                       <span className="text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400 tabular-nums">
@@ -272,11 +273,11 @@ export function AchievementsView({
                     </div>
 
                     {item.estimatedPrice ? (
-                      <div className="border-l border-zinc-200 pl-4 dark:border-zinc-800">
-                        <span className="text-[11px] uppercase font-medium text-zinc-400 block">
+                      <div className="border-l border-border pl-4">
+                        <span className="text-[11px] uppercase font-medium text-muted-foreground block">
                           Original Estimate
                         </span>
-                        <span className="text-xs text-zinc-500 tabular-nums">
+                        <span className="text-xs text-muted-foreground tabular-nums">
                           {formatMoney(item.estimatedPrice, currency)}
                         </span>
                       </div>
@@ -286,12 +287,12 @@ export function AchievementsView({
               ))}
             </div>
           ) : (
-            <div className="rounded-2xl border border-dashed border-zinc-200 p-12 text-center dark:border-zinc-800">
-              <Gift className="h-8 w-8 text-zinc-300 mx-auto mb-2" />
-              <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+            <div className="rounded-2xl border border-dashed border-border/80 p-12 text-center bg-card/20">
+              <Gift className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+              <p className="text-sm font-medium text-foreground">
                 No purchases completed yet.
               </p>
-              <p className="text-xs text-zinc-400 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 Mark items on your wishlist as purchased to record your milestone history!
               </p>
             </div>
@@ -305,23 +306,23 @@ export function AchievementsView({
               {completedGoals.map((goal) => (
                 <div
                   key={goal.id}
-                  className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60 space-y-4"
+                  className="rounded-2xl border border-border/80 bg-card/60 backdrop-blur-sm p-6 shadow-xs space-y-4"
                 >
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="flex items-center gap-2">
-                        <Badge variant="success">Completed</Badge>
-                        <span className="text-xs text-zinc-400">
+                        <Badge variant="emerald">Completed</Badge>
+                        <span className="text-xs text-muted-foreground">
                           {goal.completedAt
                             ? new Date(goal.completedAt).toLocaleDateString()
                             : "Achieved"}
                         </span>
                       </div>
-                      <h3 className="mt-2 text-lg font-bold text-zinc-900 dark:text-zinc-50">
+                      <h3 className="mt-2 text-lg font-bold text-foreground">
                         {goal.title}
                       </h3>
                       {goal.description ? (
-                        <p className="mt-1 text-xs sm:text-sm text-zinc-500">
+                        <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
                           {goal.description}
                         </p>
                       ) : null}
@@ -329,12 +330,12 @@ export function AchievementsView({
                   </div>
 
                   {goal.reflection ? (
-                    <div className="rounded-xl bg-zinc-50 p-4 dark:bg-zinc-800/60 border border-zinc-200/60 dark:border-zinc-800 space-y-2">
+                    <div className="rounded-xl bg-muted/40 p-4 border border-border/60 space-y-2">
                       <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
                         <Heart className="h-3.5 w-3.5" />
                         <span>Personal Reflection</span>
                       </h4>
-                      <p className="text-xs sm:text-sm text-zinc-800 dark:text-zinc-200 font-medium leading-relaxed">
+                      <p className="text-xs sm:text-sm text-foreground font-medium leading-relaxed">
                         &ldquo;{goal.reflection.whatAchieved}&rdquo;
                       </p>
                       {goal.reflection.whyImportant ? (

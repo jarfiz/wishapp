@@ -108,10 +108,10 @@ export function SavingsPlanDialog({
               <button
                 type="button"
                 onClick={() => setTargetType("item")}
-                className={`rounded-lg border p-2.5 text-xs font-semibold transition-all cursor-pointer ${
+                className={`rounded-xl border p-3 text-xs font-semibold transition-all cursor-pointer ${
                   targetType === "item"
-                    ? "border-emerald-600 bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400"
-                    : "border-zinc-200 text-zinc-600 hover:bg-zinc-50 dark:border-zinc-800 dark:text-zinc-400"
+                    ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 shadow-xs"
+                    : "border-border bg-card/40 text-muted-foreground hover:text-foreground hover:bg-card/70"
                 }`}
               >
                 Wishlist Item
@@ -119,10 +119,10 @@ export function SavingsPlanDialog({
               <button
                 type="button"
                 onClick={() => setTargetType("goal")}
-                className={`rounded-lg border p-2.5 text-xs font-semibold transition-all cursor-pointer ${
+                className={`rounded-xl border p-3 text-xs font-semibold transition-all cursor-pointer ${
                   targetType === "goal"
-                    ? "border-emerald-600 bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400"
-                    : "border-zinc-200 text-zinc-600 hover:bg-zinc-50 dark:border-zinc-800 dark:text-zinc-400"
+                    ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 shadow-xs"
+                    : "border-border bg-card/40 text-muted-foreground hover:text-foreground hover:bg-card/70"
                 }`}
               >
                 Life Goal
@@ -135,7 +135,7 @@ export function SavingsPlanDialog({
               <Label htmlFor="plan-item">Select Wishlist Item</Label>
               <select
                 id="plan-item"
-                className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+                className="flex h-10 w-full rounded-xl border border-input bg-card/60 backdrop-blur-sm px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/30 text-foreground cursor-pointer"
                 value={selectedItemId}
                 onChange={(e) => handleItemSelect(e.target.value)}
               >
@@ -152,7 +152,7 @@ export function SavingsPlanDialog({
               <Label htmlFor="plan-goal">Select Life Goal</Label>
               <select
                 id="plan-goal"
-                className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+                className="flex h-10 w-full rounded-xl border border-input bg-card/60 backdrop-blur-sm px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/30 text-foreground cursor-pointer"
                 value={selectedGoalId}
                 onChange={(e) => handleGoalSelect(e.target.value)}
               >
@@ -193,7 +193,7 @@ export function SavingsPlanDialog({
               value={plannedMonthly}
               onChange={(e) => setPlannedMonthly(e.target.value)}
             />
-            <p className="text-[11px] text-zinc-400">
+            <p className="text-[11px] text-muted-foreground">
               Used to calculate projected months to target.
             </p>
           </div>

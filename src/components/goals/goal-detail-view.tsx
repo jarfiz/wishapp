@@ -191,7 +191,7 @@ export function GoalDetailView({
       <div>
         <Link
           href="/goals"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to All Goals</span>
@@ -199,9 +199,9 @@ export function GoalDetailView({
       </div>
 
       {/* Goal Header Hero */}
-      <div className="overflow-hidden rounded-3xl border border-zinc-200/80 bg-white shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60">
+      <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-xs dark:border-white/[0.07] dark:bg-[#11131B] transition-colors">
         {goal.coverImageUrl ? (
-          <div className="h-48 sm:h-64 w-full overflow-hidden bg-zinc-100 dark:bg-zinc-950">
+          <div className="h-48 sm:h-64 w-full overflow-hidden bg-slate-100 dark:bg-[#0A0B10]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={goal.coverImageUrl}
@@ -216,25 +216,25 @@ export function GoalDetailView({
             <div>
               <div className="flex items-center gap-2">
                 <Badge
-                  variant={isCompleted ? "success" : "default"}
-                  className="capitalize"
+                  variant={isCompleted ? "emerald" : "default"}
+                  className="capitalize shadow-xs"
                 >
                   {goal.status}
                 </Badge>
                 {goal.targetDate ? (
-                  <span className="flex items-center gap-1 text-xs text-zinc-500">
+                  <span className="flex items-center gap-1 text-xs text-slate-400 dark:text-slate-500 font-medium">
                     <Calendar className="h-3.5 w-3.5" />
                     <span>Target: {new Date(goal.targetDate).toLocaleDateString()}</span>
                   </span>
                 ) : null}
               </div>
 
-              <h1 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50">
+              <h1 className="mt-2 text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
                 {goal.title}
               </h1>
 
               {goal.description ? (
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
                   {goal.description}
                 </p>
               ) : null}
@@ -252,10 +252,10 @@ export function GoalDetailView({
               </Button>
 
               <Button
-                variant={isCompleted ? "secondary" : "accent"}
+                variant={isCompleted ? "secondary" : "default"}
                 size="sm"
                 onClick={handleToggleCompleteGoal}
-                className="gap-1.5"
+                className="gap-1.5 shadow-sm shadow-indigo-500/20"
               >
                 <CheckCircle2 className="h-4 w-4" />
                 <span>{isCompleted ? "Reopen Goal" : "Complete Goal"}</span>
@@ -264,12 +264,12 @@ export function GoalDetailView({
           </div>
 
           {/* Progress Bar */}
-          <div className="mt-6 pt-6 border-t border-zinc-100 dark:border-zinc-800/80 space-y-2">
+          <div className="mt-6 pt-6 border-t border-slate-100 dark:border-white/[0.06] space-y-2">
             <div className="flex justify-between text-xs">
-              <span className="font-semibold text-zinc-700 dark:text-zinc-300">
+              <span className="font-semibold text-slate-700 dark:text-slate-300">
                 Milestones Progress ({goal.completedMilestones || 0} of {goal.totalMilestones || 0} completed)
               </span>
-              <span className="font-bold text-indigo-600 dark:text-indigo-400">
+              <span className="font-bold text-indigo-600 dark:text-indigo-400 tabular-nums">
                 {goal.progressPercent || 0}%
               </span>
             </div>
@@ -283,11 +283,11 @@ export function GoalDetailView({
         {/* Left: Milestones Checklist */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+            <h2 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <CheckCircle2 className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
               <span>Milestones Checklist</span>
             </h2>
-            <span className="text-xs text-zinc-400 font-medium">
+            <span className="text-xs text-slate-400 font-medium tabular-nums">
               {goal.completedMilestones || 0} / {goal.totalMilestones || 0}
             </span>
           </div>
@@ -304,6 +304,7 @@ export function GoalDetailView({
               type="submit"
               size="sm"
               disabled={isAddingMilestone || !newMilestoneTitle.trim()}
+              className="shadow-sm shadow-indigo-500/20"
             >
               <Plus className="h-4 w-4" />
             </Button>
@@ -317,18 +318,18 @@ export function GoalDetailView({
                   key={m.id}
                   className={`group flex items-center justify-between rounded-xl border p-3 transition-colors ${
                     m.isCompleted
-                      ? "border-emerald-200/60 bg-emerald-50/20 dark:border-emerald-950/40 dark:bg-emerald-950/10"
-                      : "border-zinc-200/80 bg-white dark:border-zinc-800/80 dark:bg-zinc-900/60"
+                      ? "border-emerald-500/30 bg-emerald-50/15 dark:border-emerald-500/20 dark:bg-emerald-950/10"
+                      : "border-slate-200/80 bg-white dark:border-white/[0.07] dark:bg-[#11131B]"
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <button
                       type="button"
                       onClick={() => handleToggleMilestone(m.id, m.isCompleted)}
-                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-colors cursor-pointer ${
+                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-all cursor-pointer ${
                         m.isCompleted
-                          ? "border-emerald-600 bg-emerald-600 text-white"
-                          : "border-zinc-300 hover:border-indigo-500 dark:border-zinc-700"
+                          ? "border-emerald-600 bg-emerald-600 text-white shadow-xs shadow-emerald-500/30"
+                          : "border-slate-300 hover:border-indigo-500 dark:border-white/[0.15] dark:hover:border-indigo-400"
                       }`}
                     >
                       {m.isCompleted ? (
@@ -336,10 +337,10 @@ export function GoalDetailView({
                       ) : null}
                     </button>
                     <span
-                      className={`text-xs sm:text-sm font-medium ${
+                      className={`text-xs sm:text-sm font-semibold ${
                         m.isCompleted
-                          ? "line-through text-zinc-400 dark:text-zinc-500"
-                          : "text-zinc-800 dark:text-zinc-200"
+                          ? "line-through text-slate-400 dark:text-slate-500"
+                          : "text-slate-800 dark:text-slate-200"
                       }`}
                     >
                       {m.title}
@@ -348,7 +349,7 @@ export function GoalDetailView({
 
                   <button
                     onClick={() => handleDeleteMilestone(m.id)}
-                    className="opacity-0 group-hover:opacity-100 rounded p-1 text-zinc-400 hover:text-red-600 transition-opacity cursor-pointer"
+                    className="opacity-0 group-hover:opacity-100 rounded-lg p-1.5 text-slate-400 hover:text-red-600 transition-opacity cursor-pointer"
                   >
                     <Trash2 className="h-3.5 w-3.5" />
                   </button>
@@ -356,8 +357,8 @@ export function GoalDetailView({
               ))}
             </div>
           ) : (
-            <div className="rounded-2xl border border-dashed border-zinc-200 p-8 text-center dark:border-zinc-800">
-              <p className="text-xs font-medium text-zinc-500">
+            <div className="rounded-2xl border border-dashed border-slate-200 dark:border-white/[0.09] p-8 text-center">
+              <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
                 No milestones added yet. Add your first actionable milestone above!
               </p>
             </div>
@@ -367,11 +368,11 @@ export function GoalDetailView({
         {/* Right: Linked Wishlist Items */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+            <h2 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <LinkIcon className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
               <span>Linked Wishlist Items</span>
             </h2>
-            <span className="text-xs text-zinc-400 font-medium">
+            <span className="text-xs text-slate-400 font-medium tabular-nums">
               {(goal.linkedItems || []).length} linked
             </span>
           </div>
@@ -380,7 +381,7 @@ export function GoalDetailView({
           {availableItemsToLink.length > 0 ? (
             <form onSubmit={handleLinkItem} className="flex gap-2">
               <select
-                className="flex h-9 flex-1 rounded-lg border border-zinc-200 bg-white px-3 py-1 text-xs sm:text-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+                className="flex h-9 flex-1 rounded-xl border border-slate-200 bg-slate-50/60 px-3 py-1 text-xs sm:text-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-100"
                 value={selectedItemIdToLink}
                 onChange={(e) => setSelectedItemIdToLink(e.target.value)}
               >
@@ -391,7 +392,7 @@ export function GoalDetailView({
                   </option>
                 ))}
               </select>
-              <Button type="submit" size="sm" disabled={!selectedItemIdToLink}>
+              <Button type="submit" size="sm" disabled={!selectedItemIdToLink} className="shadow-sm shadow-indigo-500/20">
                 Link
               </Button>
             </form>
@@ -403,7 +404,7 @@ export function GoalDetailView({
               {goal.linkedItems!.map((item: LinkedWishlistItem) => (
                 <div
                   key={item.id || item.wishlistItemId}
-                  className="flex items-center justify-between rounded-xl border border-zinc-200/80 bg-white p-3 dark:border-zinc-800/80 dark:bg-zinc-900/60"
+                  className="flex items-center justify-between rounded-xl border border-slate-200/80 bg-white p-3 dark:border-white/[0.07] dark:bg-[#11131B]"
                 >
                   <div className="flex items-center gap-3">
                     {item.imageUrl ? (
@@ -414,15 +415,15 @@ export function GoalDetailView({
                         className="h-10 w-10 rounded-lg object-cover"
                       />
                     ) : (
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-100 text-zinc-500 dark:bg-zinc-800">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-500 dark:bg-white/[0.06] dark:text-slate-400">
                         <Compass className="h-5 w-5" />
                       </div>
                     )}
                     <div>
-                      <h4 className="text-xs sm:text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                      <h4 className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-slate-100">
                         {item.name}
                       </h4>
-                      <p className="text-[11px] text-zinc-500">
+                      <p className="text-[11px] text-slate-400 dark:text-slate-500">
                         {item.estimatedPrice
                           ? formatMoney(item.estimatedPrice, currency)
                           : "Price unestimated"}
@@ -433,7 +434,7 @@ export function GoalDetailView({
                   <button
                     onClick={() => handleUnlinkItem(item.id || item.wishlistItemId!)}
                     title="Unlink from goal"
-                    className="rounded p-1 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 cursor-pointer"
+                    className="rounded-lg p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 cursor-pointer"
                   >
                     <Unlink className="h-4 w-4" />
                   </button>
@@ -441,8 +442,8 @@ export function GoalDetailView({
               ))}
             </div>
           ) : (
-            <div className="rounded-2xl border border-dashed border-zinc-200 p-8 text-center dark:border-zinc-800">
-              <p className="text-xs font-medium text-zinc-500">
+            <div className="rounded-2xl border border-dashed border-slate-200 dark:border-white/[0.09] p-8 text-center">
+              <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
                 No wishlist items linked yet. Link items needed to complete this quest.
               </p>
             </div>
@@ -451,20 +452,20 @@ export function GoalDetailView({
       </div>
 
       {/* Goal Reflection Section */}
-      <div className="rounded-3xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60 space-y-4">
+      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-xs dark:border-white/[0.07] dark:bg-[#11131B] space-y-4">
         <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400">
           <Trophy className="h-5 w-5" />
-          <h2 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-50">
+          <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
             Personal Reflection & Achievement Log
           </h2>
         </div>
-        <p className="text-xs sm:text-sm text-zinc-500">
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
           Preserve your story. When you complete a dream, reflect on why it mattered and what you learned.
         </p>
 
         <form onSubmit={handleSaveReflection} className="space-y-4 pt-2">
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               What did I achieve? *
             </label>
             <Textarea
@@ -478,7 +479,7 @@ export function GoalDetailView({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                 Why was it important?
               </label>
               <Textarea
@@ -490,7 +491,7 @@ export function GoalDetailView({
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                 What did I learn along the way?
               </label>
               <Textarea
@@ -503,7 +504,7 @@ export function GoalDetailView({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">
+            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               Was it worth the effort?
             </label>
             <Input
@@ -514,7 +515,7 @@ export function GoalDetailView({
           </div>
 
           <div className="flex justify-end pt-2">
-            <Button type="submit" disabled={isSavingReflection || !whatAchieved.trim()}>
+            <Button type="submit" disabled={isSavingReflection || !whatAchieved.trim()} className="shadow-sm shadow-indigo-500/20">
               {isSavingReflection ? "Saving..." : "Preserve Reflection"}
             </Button>
           </div>

@@ -53,9 +53,9 @@ export function GoalsView({
   return (
     <div className="space-y-6">
       {/* Controls Bar */}
-      <div className="flex flex-col gap-4 rounded-2xl border border-zinc-200/80 bg-white p-4 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-xs dark:border-white/[0.07] dark:bg-[#11131B] sm:flex-row sm:items-center sm:justify-between transition-colors">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
           <Input
             placeholder="Search goals & quests..."
             value={search}
@@ -66,7 +66,7 @@ export function GoalsView({
 
         <div className="flex items-center gap-2">
           <select
-            className="h-9 rounded-lg border border-zinc-200 bg-white px-3 text-xs font-medium text-zinc-700 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300"
+            className="h-9 rounded-xl border border-slate-200 bg-slate-50/60 px-3 text-xs font-medium text-slate-700 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-300 transition-colors"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
           >
@@ -76,7 +76,7 @@ export function GoalsView({
             <option value="paused">Paused</option>
           </select>
 
-          <Button onClick={handleOpenCreate} size="sm" className="gap-1.5">
+          <Button onClick={handleOpenCreate} size="sm" className="gap-1.5 shadow-sm shadow-indigo-500/20">
             <Plus className="h-4 w-4" />
             <span>New Goal</span>
           </Button>
@@ -96,18 +96,18 @@ export function GoalsView({
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-zinc-200/90 bg-white/50 p-12 text-center dark:border-zinc-800/80 dark:bg-zinc-900/30">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400">
-            <Compass className="h-7 w-7" />
+        <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-slate-200 dark:border-white/[0.09] bg-white/40 dark:bg-[#11131B]/40 p-12 text-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 shadow-xs">
+            <Compass className="h-7 w-7 stroke-[1.5]" />
           </div>
-          <h3 className="mt-4 text-base font-semibold text-zinc-900 dark:text-zinc-100">
+          <h3 className="mt-4 text-base font-bold text-slate-900 dark:text-white">
             {search.trim() ? "No matching goals found" : "No goals found"}
           </h3>
-          <p className="mt-1.5 max-w-sm text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="mt-1.5 max-w-sm text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
             Group your dreams into life goals (e.g. &ldquo;Visit Norway&rdquo;, &ldquo;Build My Dream Setup&rdquo;, &ldquo;Learn Full-Stack Development&rdquo;).
           </p>
           <div className="mt-6">
-            <Button onClick={handleOpenCreate} size="sm" className="gap-1.5">
+            <Button onClick={handleOpenCreate} size="sm" className="gap-1.5 shadow-sm shadow-indigo-500/20">
               <Plus className="h-4 w-4" />
               <span>Create Your First Goal</span>
             </Button>

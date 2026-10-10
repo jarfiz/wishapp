@@ -135,10 +135,10 @@ export function WishlistView({
   return (
     <div className="space-y-6">
       {/* Controls Bar */}
-      <div className="flex flex-col gap-4 rounded-2xl border border-zinc-200/80 bg-white p-4 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-xs dark:border-white/[0.07] dark:bg-[#11131B] sm:flex-row sm:items-center sm:justify-between transition-colors">
         {/* Search */}
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
           <Input
             placeholder="Search wishlist items..."
             value={search}
@@ -151,7 +151,7 @@ export function WishlistView({
         <div className="flex flex-wrap items-center gap-2">
           {/* Status filter */}
           <select
-            className="h-9 rounded-lg border border-zinc-200 bg-white px-3 text-xs font-medium text-zinc-700 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300"
+            className="h-9 rounded-xl border border-slate-200 bg-slate-50/60 px-3 text-xs font-medium text-slate-700 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-300 transition-colors"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
           >
@@ -163,7 +163,7 @@ export function WishlistView({
 
           {/* Priority filter */}
           <select
-            className="h-9 rounded-lg border border-zinc-200 bg-white px-3 text-xs font-medium text-zinc-700 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300"
+            className="h-9 rounded-xl border border-slate-200 bg-slate-50/60 px-3 text-xs font-medium text-slate-700 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-300 transition-colors"
             value={priorityFilter}
             onChange={(e) => setPriorityFilter(e.target.value)}
           >
@@ -176,7 +176,7 @@ export function WishlistView({
           {/* Category filter */}
           {categories.length > 0 ? (
             <select
-              className="h-9 rounded-lg border border-zinc-200 bg-white px-3 text-xs font-medium text-zinc-700 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300"
+              className="h-9 rounded-xl border border-slate-200 bg-slate-50/60 px-3 text-xs font-medium text-slate-700 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-300 transition-colors"
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
             >
@@ -191,7 +191,7 @@ export function WishlistView({
 
           {/* Sort By */}
           <select
-            className="h-9 rounded-lg border border-zinc-200 bg-white px-3 text-xs font-medium text-zinc-700 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300"
+            className="h-9 rounded-xl border border-slate-200 bg-slate-50/60 px-3 text-xs font-medium text-slate-700 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-300 transition-colors"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as "recent" | "targetDate" | "priceAsc" | "priceDesc" | "name")}
           >
@@ -203,14 +203,14 @@ export function WishlistView({
           </select>
 
           {/* View toggle */}
-          <div className="flex items-center rounded-lg border border-zinc-200 p-0.5 dark:border-zinc-800">
+          <div className="flex items-center rounded-xl border border-slate-200 p-0.5 dark:border-white/[0.08] bg-slate-50/60 dark:bg-white/[0.03]">
             <button
               onClick={() => setViewMode("grid")}
               title="Grid view"
-              className={`rounded-md p-1.5 transition-colors cursor-pointer ${
+              className={`rounded-lg p-1.5 transition-colors cursor-pointer ${
                 viewMode === "grid"
-                  ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
-                  : "text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300"
+                  ? "bg-white text-slate-900 shadow-xs dark:bg-white/[0.1] dark:text-white"
+                  : "text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
               }`}
             >
               <LayoutGrid className="h-4 w-4" />
@@ -218,10 +218,10 @@ export function WishlistView({
             <button
               onClick={() => setViewMode("list")}
               title="List view"
-              className={`rounded-md p-1.5 transition-colors cursor-pointer ${
+              className={`rounded-lg p-1.5 transition-colors cursor-pointer ${
                 viewMode === "list"
-                  ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"
-                  : "text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300"
+                  ? "bg-white text-slate-900 shadow-xs dark:bg-white/[0.1] dark:text-white"
+                  : "text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
               }`}
             >
               <List className="h-4 w-4" />
@@ -229,7 +229,7 @@ export function WishlistView({
           </div>
 
           {/* Actions */}
-          <Button onClick={handleOpenAdd} size="sm" className="gap-1.5">
+          <Button onClick={handleOpenAdd} size="sm" className="gap-1.5 shadow-sm shadow-indigo-500/20">
             <Plus className="h-4 w-4" />
             <span>Add Wish</span>
           </Button>
@@ -266,14 +266,14 @@ export function WishlistView({
         )
       ) : (
         /* Empty State */
-        <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-zinc-200/90 bg-white/50 p-12 text-center dark:border-zinc-800/80 dark:bg-zinc-900/30">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400">
-            <Gift className="h-7 w-7" />
+        <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-slate-200 dark:border-white/[0.09] bg-white/40 dark:bg-[#11131B]/40 p-12 text-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 shadow-xs">
+            <Gift className="h-7 w-7 stroke-[1.5]" />
           </div>
-          <h3 className="mt-4 text-base font-semibold text-zinc-900 dark:text-zinc-100">
+          <h3 className="mt-4 text-base font-bold text-slate-900 dark:text-white">
             {search.trim() ? "No matching wishes found" : "Your wishlist is empty"}
           </h3>
-          <p className="mt-1.5 max-w-sm text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="mt-1.5 max-w-sm text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
             {search.trim()
               ? "Try adjusting your search query or filters to find what you are looking for."
               : "Capture things you dream about having or doing. You can add an estimated price or photo anytime later."}
@@ -285,7 +285,7 @@ export function WishlistView({
               size="sm"
               className="gap-1.5"
             >
-              <Sparkles className="h-4 w-4 text-indigo-500" />
+              <Sparkles className="h-4 w-4 text-amber-500 dark:text-amber-400" />
               <span>Quick Add</span>
             </Button>
             <Button onClick={handleOpenAdd} size="sm" className="gap-1.5">

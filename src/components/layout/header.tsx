@@ -17,23 +17,23 @@ export function Header({
   onOpenQuickAdd,
 }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-zinc-200/80 bg-white/80 px-4 sm:px-8 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-950/80">
+    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-slate-200/80 bg-white/70 px-4 sm:px-8 backdrop-blur-xl dark:border-white/[0.07] dark:bg-[#090A0F]/80 transition-colors">
       <div className="flex items-center gap-3">
         <button
           type="button"
           onClick={onOpenMobileMenu}
-          className="rounded-lg p-2 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 md:hidden dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100 cursor-pointer"
+          className="rounded-xl p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 md:hidden dark:text-slate-400 dark:hover:bg-white/[0.06] dark:hover:text-slate-100 cursor-pointer transition-colors"
         >
           <Menu className="h-5 w-5" />
           <span className="sr-only">Toggle navigation</span>
         </button>
 
         <div>
-          <h1 className="text-base sm:text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
+          <h1 className="text-base sm:text-lg font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
             {title}
           </h1>
           {subtitle ? (
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 hidden sm:block">
+            <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
               {subtitle}
             </p>
           ) : null}
@@ -44,7 +44,7 @@ export function Header({
         <Button
           onClick={onOpenQuickAdd}
           size="sm"
-          className="gap-1.5 shadow-sm"
+          className="gap-1.5 shadow-sm shadow-indigo-500/15"
         >
           <Plus className="h-4 w-4" />
           <span className="hidden sm:inline">Add Wish</span>

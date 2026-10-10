@@ -166,56 +166,63 @@ export function SettingsView({
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
       {/* Top Banner */}
-      <div className="flex items-center gap-3 rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-400">
-          <Settings className="h-6 w-6" />
+      <div className="flex items-center gap-4 rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-xs dark:border-white/[0.07] dark:bg-[#11131B] transition-colors">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 shadow-xs">
+          <Settings className="h-6 w-6 stroke-[1.8]" />
         </div>
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+          <h2 className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white">
             Account & Settings
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-500">
-            Manage your profile, preferred currency, categories, and data.
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+            Manage your profile, preferred currency, custom categories, and data backups.
           </p>
         </div>
       </div>
 
       {/* Preferences Section */}
-      <div className="rounded-2xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60 space-y-6">
-        <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-          <User className="h-4 w-4 text-indigo-600" />
+      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-xs dark:border-white/[0.07] dark:bg-[#11131B] space-y-6 transition-colors">
+        <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <User className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
           <span>Profile & Appearance</span>
         </h3>
 
         <form onSubmit={handleSavePreferences} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label htmlFor="pref-name">Display Name</Label>
+              <Label htmlFor="pref-name" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                Display Name
+              </Label>
               <Input
                 id="pref-name"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 placeholder="Your name"
+                className="h-10 rounded-xl"
               />
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="pref-email">Account Email</Label>
+              <Label htmlFor="pref-email" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                Account Email
+              </Label>
               <Input
                 id="pref-email"
                 value={userEmail}
                 disabled
-                className="bg-zinc-50 dark:bg-zinc-800/50 cursor-not-allowed"
+                className="h-10 rounded-xl bg-slate-50 dark:bg-white/[0.02] cursor-not-allowed text-slate-400"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <Label htmlFor="pref-currency">Preferred Currency</Label>
+              <Label htmlFor="pref-currency" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                Preferred Currency
+              </Label>
               <select
                 id="pref-currency"
-                className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+                className="flex h-10 w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3 py-1 text-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-100 transition-colors"
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
               >
@@ -228,22 +235,24 @@ export function SettingsView({
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="pref-theme">Interface Theme</Label>
+              <Label htmlFor="pref-theme" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                Interface Theme
+              </Label>
               <select
                 id="pref-theme"
-                className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+                className="flex h-10 w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3 py-1 text-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-100 transition-colors"
                 value={theme}
                 onChange={(e) => setTheme(e.target.value as "light" | "dark" | "system")}
               >
                 <option value="system">System Default</option>
-                <option value="light">Light Mode</option>
-                <option value="dark">Dark Mode</option>
+                <option value="light">Light Mode (Porcelain)</option>
+                <option value="dark">Dark Mode (Obsidian)</option>
               </select>
             </div>
           </div>
 
           <div className="flex justify-end pt-2">
-            <Button type="submit" disabled={isSavingPrefs}>
+            <Button type="submit" disabled={isSavingPrefs} className="shadow-sm shadow-indigo-500/20">
               {isSavingPrefs ? "Saving..." : "Save Preferences"}
             </Button>
           </div>
@@ -251,9 +260,9 @@ export function SettingsView({
       </div>
 
       {/* Categories Management Section */}
-      <div className="rounded-2xl border border-zinc-200/80 bg-white p-6 sm:p-8 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60 space-y-6">
-        <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-          <FolderTree className="h-4 w-4 text-indigo-600" />
+      <div className="rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-xs dark:border-white/[0.07] dark:bg-[#11131B] space-y-6 transition-colors">
+        <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <FolderTree className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
           <span>Custom Categories</span>
         </h3>
 
@@ -263,11 +272,12 @@ export function SettingsView({
             placeholder="New category name (e.g. Travel, Tech, Books)..."
             value={newCategoryName}
             onChange={(e) => setNewCategoryName(e.target.value)}
+            className="h-10 rounded-xl"
           />
           <Button
             type="submit"
             disabled={isCreatingCat || !newCategoryName.trim()}
-            className="gap-1.5"
+            className="gap-1.5 shadow-sm shadow-indigo-500/20 shrink-0"
           >
             <Plus className="h-4 w-4" />
             <span>Add</span>
@@ -280,12 +290,12 @@ export function SettingsView({
             {categories.map((c) => (
               <div
                 key={c.id}
-                className="flex items-center gap-2 rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-1.5 dark:border-zinc-800 dark:bg-zinc-800/60 text-xs font-medium"
+                className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-1.5 dark:border-white/[0.08] dark:bg-white/[0.04] text-xs font-semibold text-slate-800 dark:text-slate-200"
               >
                 <span>{c.name}</span>
                 <button
                   onClick={() => handleDeleteCategory(c.id, c.name)}
-                  className="text-zinc-400 hover:text-red-500 cursor-pointer"
+                  className="text-slate-400 hover:text-red-500 cursor-pointer transition-colors"
                   title="Delete category"
                 >
                   <Trash2 className="h-3 w-3" />
@@ -294,7 +304,7 @@ export function SettingsView({
             ))}
           </div>
         ) : (
-          <p className="text-xs text-zinc-400">
+          <p className="text-xs text-slate-400">
             No custom categories yet. Categories help you organize wishes and goals.
           </p>
         )}
@@ -303,14 +313,14 @@ export function SettingsView({
       {/* Data Export & Danger Zone */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {/* Export Data */}
-        <div className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900/60 space-y-3">
+        <div className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-xs dark:border-white/[0.07] dark:bg-[#11131B] space-y-3 transition-colors">
           <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400">
             <Download className="h-5 w-5" />
-            <h4 className="font-bold text-zinc-900 dark:text-zinc-50 text-sm">
+            <h4 className="font-bold text-slate-900 dark:text-white text-sm">
               Export All Data
             </h4>
           </div>
-          <p className="text-xs text-zinc-500 leading-relaxed">
+          <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
             Download a full JSON backup of all your wishlist items, goals, milestones, savings history, and reflections.
           </p>
           <div className="pt-2">
@@ -327,14 +337,14 @@ export function SettingsView({
         </div>
 
         {/* Danger Zone */}
-        <div className="rounded-2xl border border-red-200/60 bg-red-50/20 p-6 shadow-xs dark:border-red-950/40 dark:bg-red-950/10 space-y-3">
-          <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
+        <div className="rounded-3xl border border-rose-500/20 bg-rose-500/5 p-6 shadow-xs dark:border-rose-500/20 dark:bg-rose-950/10 space-y-3">
+          <div className="flex items-center gap-2 text-rose-600 dark:text-rose-400">
             <AlertTriangle className="h-5 w-5" />
-            <h4 className="font-bold text-red-900 dark:text-red-200 text-sm">
+            <h4 className="font-bold text-rose-950 dark:text-rose-200 text-sm">
               Danger Zone
             </h4>
           </div>
-          <p className="text-xs text-red-700/80 dark:text-red-300/80 leading-relaxed">
+          <p className="text-xs text-rose-700/80 dark:text-rose-300/80 leading-relaxed">
             Permanently delete your account and all associated dreams, goals, and history. This cannot be undone.
           </p>
           <div className="pt-2">

@@ -156,7 +156,7 @@ function GoalDialogForm({
         <div className="space-y-1.5">
           <Label>Cover Image</Label>
           {coverImageUrl ? (
-            <div className="relative group rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 h-36 w-full bg-zinc-100 flex items-center justify-center">
+            <div className="relative group rounded-2xl overflow-hidden border border-border/80 h-36 w-full bg-muted/40 flex items-center justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={coverImageUrl}
@@ -175,9 +175,9 @@ function GoalDialogForm({
               </button>
             </div>
           ) : (
-            <label className="flex flex-col items-center justify-center h-28 w-full rounded-xl border border-dashed border-zinc-300 dark:border-zinc-800 hover:border-indigo-400 bg-zinc-50 dark:bg-zinc-900/50 cursor-pointer transition-colors">
-              <UploadCloud className="h-6 w-6 text-zinc-400 mb-1" />
-              <span className="text-xs text-zinc-500 font-medium">
+            <label className="flex flex-col items-center justify-center h-28 w-full rounded-2xl border border-dashed border-border/80 hover:border-indigo-500/60 bg-muted/20 hover:bg-muted/40 cursor-pointer transition-colors">
+              <UploadCloud className="h-6 w-6 text-muted-foreground mb-1" />
+              <span className="text-xs text-muted-foreground font-medium">
                 {isUploading ? "Uploading..." : "Upload cover image (optional)"}
               </span>
               <input
@@ -228,7 +228,7 @@ function GoalDialogForm({
             <Label htmlFor="goal-status">Status</Label>
             <select
               id="goal-status"
-              className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+              className="flex h-10 w-full rounded-xl border border-input bg-card/60 backdrop-blur-sm px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/30 text-foreground cursor-pointer"
               value={status}
               onChange={(e) => setStatus(e.target.value as "active" | "paused" | "completed" | "archived")}
             >
@@ -275,7 +275,7 @@ function GoalDialogForm({
             <Label htmlFor="goal-cat">Category</Label>
             <select
               id="goal-cat"
-              className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+              className="flex h-10 w-full rounded-xl border border-input bg-card/60 backdrop-blur-sm px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/30 text-foreground cursor-pointer"
               value={categoryId}
               onChange={(e) => setCategoryId(e.target.value)}
             >
@@ -295,9 +295,9 @@ function GoalDialogForm({
             id="goal-vision-board"
             checked={onVisionBoard}
             onChange={(e) => setOnVisionBoard(e.target.checked)}
-            className="h-4 w-4 rounded border-zinc-300 text-indigo-600 focus:ring-indigo-500"
+            className="h-4 w-4 rounded-md border-border text-indigo-600 focus:ring-indigo-500/30 dark:bg-card cursor-pointer"
           />
-          <Label htmlFor="goal-vision-board" className="cursor-pointer text-xs sm:text-sm font-normal">
+          <Label htmlFor="goal-vision-board" className="cursor-pointer text-xs sm:text-sm font-normal text-muted-foreground hover:text-foreground transition-colors">
             Feature this goal on my Vision Board
           </Label>
         </div>

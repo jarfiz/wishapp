@@ -161,9 +161,9 @@ function WishDialogForm({
       <form onSubmit={handleSubmit} className="space-y-4 max-h-[70vh] overflow-y-auto pr-1">
         {/* Image Upload Area */}
         <div className="space-y-1.5">
-          <Label>Wish Image</Label>
+          <Label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Wish Image</Label>
           {imageUrl ? (
-            <div className="relative group rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800 h-44 w-full bg-zinc-100 dark:bg-zinc-950 flex items-center justify-center">
+            <div className="relative group rounded-2xl overflow-hidden border border-slate-200 dark:border-white/[0.08] h-44 w-full bg-slate-100 dark:bg-[#0A0B10] flex items-center justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={imageUrl}
@@ -176,17 +176,17 @@ function WishDialogForm({
                   setImageUrl(null);
                   setImageKey(null);
                 }}
-                className="absolute top-2 right-2 bg-black/70 hover:bg-black text-white p-1.5 rounded-full cursor-pointer transition-opacity"
+                className="absolute top-2.5 right-2.5 bg-black/70 hover:bg-black text-white p-1.5 rounded-full cursor-pointer transition-opacity backdrop-blur-md border border-white/20"
                 title="Remove image"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
           ) : (
-            <label className="flex flex-col items-center justify-center h-32 w-full rounded-xl border border-dashed border-zinc-300 dark:border-zinc-800 hover:border-indigo-400 bg-zinc-50 dark:bg-zinc-900/50 cursor-pointer transition-colors">
-              <div className="flex flex-col items-center justify-center pt-5 pb-6 text-zinc-500 dark:text-zinc-400">
-                <UploadCloud className="h-7 w-7 mb-2 text-zinc-400" />
-                <p className="text-xs font-medium">
+            <label className="flex flex-col items-center justify-center h-32 w-full rounded-2xl border border-dashed border-slate-300 dark:border-white/[0.1] hover:border-indigo-500/50 bg-slate-50/50 dark:bg-white/[0.02] cursor-pointer transition-colors">
+              <div className="flex flex-col items-center justify-center pt-5 pb-6 text-slate-500 dark:text-slate-400">
+                <UploadCloud className="h-7 w-7 mb-2 text-slate-400" />
+                <p className="text-xs font-semibold">
                   {isUploading ? "Uploading image..." : "Upload photo (optional, up to 5MB)"}
                 </p>
               </div>
@@ -202,7 +202,7 @@ function WishDialogForm({
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="edit-name">Name *</Label>
+          <Label htmlFor="edit-name" className="text-xs font-semibold text-slate-700 dark:text-slate-300">Name *</Label>
           <Input
             id="edit-name"
             placeholder="e.g. Ergonomic Office Chair"
@@ -214,7 +214,7 @@ function WishDialogForm({
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="space-y-1.5">
-            <Label htmlFor="edit-estimated-price">
+            <Label htmlFor="edit-estimated-price" className="text-xs font-semibold text-slate-700 dark:text-slate-300">
               Estimated Price ({currencySymbol})
             </Label>
             <Input
@@ -228,7 +228,7 @@ function WishDialogForm({
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="edit-target-date">Target Date</Label>
+            <Label htmlFor="edit-target-date" className="text-xs font-semibold text-slate-700 dark:text-slate-300">Target Date</Label>
             <Input
               id="edit-target-date"
               type="date"
@@ -240,10 +240,10 @@ function WishDialogForm({
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="space-y-1.5">
-            <Label htmlFor="edit-category">Category</Label>
+            <Label htmlFor="edit-category" className="text-xs font-semibold text-slate-700 dark:text-slate-300">Category</Label>
             <select
               id="edit-category"
-              className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+              className="flex h-9.5 w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-100"
               value={categoryId}
               onChange={(e) => setCategoryId(e.target.value)}
             >
@@ -257,10 +257,10 @@ function WishDialogForm({
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="edit-priority">Priority</Label>
+            <Label htmlFor="edit-priority" className="text-xs font-semibold text-slate-700 dark:text-slate-300">Priority</Label>
             <select
               id="edit-priority"
-              className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+              className="flex h-9.5 w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-100"
               value={priority}
               onChange={(e) => setPriority(e.target.value as "low" | "medium" | "high")}
             >
@@ -271,10 +271,10 @@ function WishDialogForm({
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="edit-status">Status</Label>
+            <Label htmlFor="edit-status" className="text-xs font-semibold text-slate-700 dark:text-slate-300">Status</Label>
             <select
               id="edit-status"
-              className="flex h-9 w-full rounded-lg border border-zinc-200 bg-white px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+              className="flex h-9.5 w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3 py-1 text-sm shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-100"
               value={status}
               onChange={(e) => setStatus(e.target.value as "idea" | "planned" | "saving" | "purchased" | "archived")}
             >
@@ -288,8 +288,8 @@ function WishDialogForm({
         </div>
 
         {status === "purchased" ? (
-          <div className="space-y-1.5 bg-emerald-50 dark:bg-emerald-950/30 p-3 rounded-lg border border-emerald-200 dark:border-emerald-800/40">
-            <Label htmlFor="edit-actual-price" className="text-emerald-800 dark:text-emerald-300">
+          <div className="space-y-1.5 bg-emerald-500/10 p-3.5 rounded-2xl border border-emerald-500/20">
+            <Label htmlFor="edit-actual-price" className="text-xs font-semibold text-emerald-800 dark:text-emerald-300">
               Actual Purchase Price ({currencySymbol})
             </Label>
             <Input
@@ -304,7 +304,7 @@ function WishDialogForm({
         ) : null}
 
         <div className="space-y-1.5">
-          <Label htmlFor="edit-url">Product or Store URL</Label>
+          <Label htmlFor="edit-url" className="text-xs font-semibold text-slate-700 dark:text-slate-300">Product or Store URL</Label>
           <Input
             id="edit-url"
             type="url"
@@ -315,7 +315,7 @@ function WishDialogForm({
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="edit-desc">Description</Label>
+          <Label htmlFor="edit-desc" className="text-xs font-semibold text-slate-700 dark:text-slate-300">Description</Label>
           <Textarea
             id="edit-desc"
             rows={2}
@@ -326,7 +326,7 @@ function WishDialogForm({
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="edit-notes">Personal Reason / Why This Matters</Label>
+          <Label htmlFor="edit-notes" className="text-xs font-semibold text-slate-700 dark:text-slate-300">Personal Reason / Why This Matters</Label>
           <Textarea
             id="edit-notes"
             rows={2}
@@ -336,16 +336,16 @@ function WishDialogForm({
           />
         </div>
 
-        <div className="flex items-center gap-2 pt-1">
+        <div className="flex items-center gap-2.5 pt-1">
           <input
             type="checkbox"
             id="edit-vision-board"
             checked={onVisionBoard}
             onChange={(e) => setOnVisionBoard(e.target.checked)}
-            className="h-4 w-4 rounded border-zinc-300 text-indigo-600 focus:ring-indigo-500"
+            className="h-4 w-4 rounded-md border-slate-300 text-indigo-600 focus:ring-indigo-500"
           />
-          <Label htmlFor="edit-vision-board" className="cursor-pointer text-xs sm:text-sm font-normal">
-            Feature this dream on my Vision Board
+          <Label htmlFor="edit-vision-board" className="cursor-pointer text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300">
+            Feature this dream on my Vision Board ✨
           </Label>
         </div>
 
@@ -360,6 +360,7 @@ function WishDialogForm({
           <Button
             type="submit"
             disabled={isSubmitting || !name.trim()}
+            className="shadow-sm shadow-indigo-500/20"
           >
             {isSubmitting ? "Saving..." : isEditing ? "Save Changes" : "Create Wish"}
           </Button>

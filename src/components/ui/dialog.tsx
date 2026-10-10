@@ -70,7 +70,7 @@ export function DialogContent({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity animate-in fade-in"
+        className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity animate-in fade-in"
         onClick={() => onOpenChange(false)}
       />
 
@@ -79,14 +79,14 @@ export function DialogContent({
         role="dialog"
         aria-modal="true"
         className={cn(
-          "relative z-50 w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl border border-zinc-200 bg-white p-6 shadow-2xl transition-all dark:border-zinc-800 dark:bg-zinc-900 text-zinc-950 dark:text-zinc-50 animate-in zoom-in-95",
+          "relative z-50 w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-3xl border border-slate-200/80 bg-white/95 p-6 sm:p-7 shadow-2xl transition-all dark:border-white/[0.08] dark:bg-[#11131B]/95 backdrop-blur-xl text-slate-900 dark:text-white animate-in zoom-in-95",
           className
         )}
       >
         <button
           type="button"
           onClick={() => onOpenChange(false)}
-          className="absolute right-4 top-4 rounded-sm p-1 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 focus:outline-none"
+          className="absolute right-4 top-4 rounded-xl p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/[0.06] transition-colors focus:outline-none cursor-pointer"
         >
           <X className="h-5 w-5" />
           <span className="sr-only">Close</span>
@@ -115,7 +115,7 @@ export function DialogTitle({
 }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h2
-      className={cn("text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100", className)}
+      className={cn("text-lg font-black tracking-tight text-slate-900 dark:text-white", className)}
       {...props}
     />
   );
@@ -127,7 +127,7 @@ export function DialogDescription({
 }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
     <p
-      className={cn("text-sm text-zinc-500 dark:text-zinc-400", className)}
+      className={cn("text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed", className)}
       {...props}
     />
   );
@@ -140,7 +140,7 @@ export function DialogFooter({
   return (
     <div
       className={cn(
-        "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800/80",
+        "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 mt-6 pt-4 border-t border-slate-100 dark:border-white/[0.06]",
         className
       )}
       {...props}
