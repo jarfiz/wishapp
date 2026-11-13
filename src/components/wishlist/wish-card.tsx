@@ -174,15 +174,18 @@ export function WishCard({
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0 ml-3">
           {item.onVisionBoard ? (
-            <Badge variant="indigo" className="gap-1 px-1.5 text-[10px]">
+            <Badge variant="indigo" className="gap-1 px-2 py-0.5 text-[10px] shrink-0">
               <Eye className="h-3 w-3" />
+              <span className="hidden sm:inline">Board</span>
             </Badge>
           ) : null}
           <button
+            type="button"
             onClick={() => onEdit(item)}
-            className="rounded-lg p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 dark:hover:bg-white/[0.06] dark:hover:text-slate-200 cursor-pointer transition-colors"
+            title="Edit item"
+            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-slate-200/80 bg-slate-50/70 text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-slate-400 dark:hover:bg-white/[0.08] dark:hover:text-white cursor-pointer transition-all active:scale-95"
           >
             <Edit className="h-3.5 w-3.5" />
           </button>
@@ -240,7 +243,8 @@ export function WishCard({
           <button
             type="button"
             onClick={() => setShowMenu(!showMenu)}
-            className="rounded-full bg-white/90 p-1.5 text-slate-700 shadow-sm backdrop-blur-md transition-colors hover:bg-white dark:bg-black/60 dark:text-slate-200 dark:hover:bg-black/80 dark:border dark:border-white/10 cursor-pointer"
+            aria-label="More options"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-white/90 text-slate-700 shadow-sm backdrop-blur-md border border-slate-200/60 transition-all hover:bg-white active:scale-95 dark:bg-[#11131B]/80 dark:text-slate-200 dark:hover:bg-[#11131B] dark:border-white/15 cursor-pointer"
           >
             <MoreVertical className="h-4 w-4" />
           </button>
@@ -335,40 +339,56 @@ export function WishCard({
           ) : null}
         </div>
 
-        {/* Footer info & Purchase Button */}
-        <div className="mt-4 pt-3.5 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between">
-          <div className="flex flex-col">
+        {/* Price & Action Footer */}
+        <div className="mt-4 pt-3.5 border-t border-slate-100 dark:border-white/[0.06] space-y-3">
+          <div className="flex flex-col min-w-0">
             <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
               {isPurchased ? "Spent" : "Estimate"}
             </span>
-            <span className="text-sm sm:text-base font-black text-slate-900 dark:text-white tabular-nums">
+            <div className="mt-0.5 text-sm sm:text-base font-black text-slate-900 dark:text-white tabular-nums">
               {isPurchased ? (
                 item.actualPrice ? (
                   <Money amount={item.actualPrice} currency={currency} />
                 ) : (
-                  "Price unrecorded"
+                  <span className="text-xs font-medium text-slate-400 dark:text-slate-500">
+                    Price unrecorded
+                  </span>
                 )
               ) : item.estimatedPrice ? (
                 <Money amount={item.estimatedPrice} currency={currency} />
               ) : (
-                "Price not set"
+                <span className="text-xs font-medium text-slate-400 dark:text-slate-500">
+                  Price not set
+                </span>
               )}
-            </span>
+            </div>
           </div>
 
-          <button
-            type="button"
-            onClick={handleTogglePurchase}
-            className={cn(
-              "flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-semibold transition-all cursor-pointer shadow-xs",
-              isPurchased
-                ? "bg-emerald-600 text-white shadow-emerald-600/25 hover:bg-emerald-500"
-                : "border border-slate-200 bg-slate-50/80 text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-slate-300 dark:hover:border-emerald-500/40 dark:hover:bg-emerald-500/10 dark:hover:text-emerald-400"
-            )}
-          >
-            <Check className="h-3.5 w-3.5 stroke-[2.5]" />
-            <span>{isPurchased ? "Purchased" : "Got it!"}</span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleTogglePurchase}
+              className={cn(
+                "flex-1 inline-flex h-9 items-center justify-center gap-1.5 rounded-xl px-3.5 text-xs font-semibold whitespace-nowrap transition-all duration-150 cursor-pointer active:scale-[0.98]",
+                isPurchased
+                  ? "bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-sm shadow-emerald-600/20 hover:from-emerald-500 hover:to-teal-500 border border-emerald-400/20"
+                  : "border border-slate-200/90 bg-slate-50 text-slate-700 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-700 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-slate-200 dark:hover:border-emerald-500/40 dark:hover:bg-emerald-500/15 dark:hover:text-emerald-400"
+              )}
+            >
+              <Check className="h-3.5 w-3.5 stroke-[2.5] shrink-0" />
+              <span>{isPurchased ? "Purchased" : "Mark Purchased"}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onEdit(item)}
+              title="Edit details"
+              aria-label="Edit details"
+              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200/90 bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-slate-400 dark:hover:bg-white/[0.08] dark:hover:text-white transition-all duration-150 cursor-pointer active:scale-95"
+            >
+              <Edit className="h-3.5 w-3.5" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
