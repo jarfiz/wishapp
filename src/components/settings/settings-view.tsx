@@ -15,6 +15,7 @@ import { signOut } from "@/lib/auth/client";
 import { SUPPORTED_CURRENCIES, type CurrencyCode } from "@/lib/money";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useTheme } from "@/components/theme-provider";
 import {
   Settings,
   User,
@@ -42,6 +43,7 @@ export function SettingsView({
   userEmail,
 }: SettingsViewProps) {
   const router = useRouter();
+  const { theme: activeTheme, setTheme: setGlobalTheme } = useTheme();
 
   const [displayName, setDisplayName] = React.useState(
     initialPreferences.displayName || ""
@@ -53,6 +55,10 @@ export function SettingsView({
     initialPreferences.theme || "system"
   );
   const [isSavingPrefs, setIsSavingPrefs] = React.useState(false);
+
+  React.useEffect(() => {
+    setTheme(activeTheme);
+  }, [activeTheme]);
 
   // Categories
   const [newCategoryName, setNewCategoryName] = React.useState("");
@@ -69,18 +75,7 @@ export function SettingsView({
         theme,
       });
 
-      // Apply theme to document if changed
-      if (theme === "dark") {
-        document.documentElement.classList.add("dark");
-      } else if (theme === "light") {
-        document.documentElement.classList.remove("dark");
-      } else {
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-      }
+      setGlobalTheme(theme);
 
       toast.success("Preferences updated successfully");
     } catch (err: unknown) {
@@ -242,7 +237,11 @@ export function SettingsView({
                 id="pref-theme"
                 className="flex h-10 w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3 py-1 text-sm shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-100 transition-colors"
                 value={theme}
-                onChange={(e) => setTheme(e.target.value as "light" | "dark" | "system")}
+                onChange={(e) => {
+                  const next = e.target.value as "light" | "dark" | "system";
+                  setTheme(next);
+                  setGlobalTheme(next);
+                }}
               >
                 <option value="system">System Default</option>
                 <option value="light">Light Mode (Porcelain)</option>

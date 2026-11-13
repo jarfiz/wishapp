@@ -2,6 +2,7 @@ import { getServerSession } from "@/lib/auth/session";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   Sparkles,
   Gift,
@@ -38,6 +39,7 @@ export default async function HomePage() {
         </div>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <Link href="/auth/signin">
             <Button variant="ghost" size="sm" className="font-semibold text-slate-600 dark:text-slate-300">
               Sign In

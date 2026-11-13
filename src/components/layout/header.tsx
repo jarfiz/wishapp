@@ -1,7 +1,9 @@
 "use client";
 
 import { Menu, Plus } from "lucide-react";
-import { Button } from "@/lib/../components/ui/button";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { updateThemePreference } from "@/lib/actions/user";
 
 interface HeaderProps {
   title?: string;
@@ -16,6 +18,12 @@ export function Header({
   onOpenMobileMenu,
   onOpenQuickAdd,
 }: HeaderProps) {
+  const handleThemeChange = (nextTheme: "light" | "dark") => {
+    void updateThemePreference(nextTheme).catch(() => {
+      // Non-blocking background sync
+    });
+  };
+
   return (
     <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-slate-200/80 bg-white/70 px-4 sm:px-8 backdrop-blur-xl dark:border-white/[0.07] dark:bg-[#090A0F]/80 transition-colors">
       <div className="flex items-center gap-3">
@@ -40,7 +48,8 @@ export function Header({
         </div>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2.5">
+        <ThemeToggle onThemeChange={handleThemeChange} />
         <Button
           onClick={onOpenQuickAdd}
           size="sm"

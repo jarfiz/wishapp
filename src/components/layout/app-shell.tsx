@@ -6,6 +6,7 @@ import { Header } from "./header";
 import { QuickAddDialog } from "@/components/wishlist/quick-add-dialog";
 import { Toaster } from "sonner";
 import { X } from "lucide-react";
+import { useTheme } from "@/components/theme-provider";
 import type { Category } from "@/types";
 
 interface AppShellProps {
@@ -31,10 +32,11 @@ export function AppShell({
 }: AppShellProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [quickAddOpen, setQuickAddOpen] = React.useState(false);
+  const { resolvedTheme } = useTheme();
 
   return (
     <div className="flex min-h-screen bg-ambient-mesh text-slate-900 dark:text-slate-100 antialiased font-sans">
-      <Toaster position="top-right" richColors />
+      <Toaster position="top-right" richColors theme={resolvedTheme} />
 
       {/* Desktop Sidebar */}
       <div className="hidden md:flex md:w-64 md:shrink-0 md:flex-col fixed inset-y-0 z-40">

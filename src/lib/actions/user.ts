@@ -85,6 +85,39 @@ export async function updateUserPreferences(data: UserPreferencesInput) {
   return { success: true };
 }
 
+export async function updateThemePreference(theme: "light" | "dark" | "system") {
+  const session = await requireAuth();
+  const userId = session.user.id;
+
+  const [existing] = await db
+    .select()
+    .from(userPreferences)
+    .where(eq(userPreferences.userId, userId))
+    .limit(1);
+
+  if (existing) {
+    await db
+      .update(userPreferences)
+      .set({
+        theme,
+        updatedAt: new Date(),
+      })
+      .where(eq(userPreferences.id, existing.id));
+  } else {
+    await db.insert(userPreferences).values({
+      userId,
+      currency: "IDR",
+      theme,
+      displayName: session.user.name || null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+  }
+
+  revalidatePath("/settings");
+  return { success: true };
+}
+
 export async function getCategories() {
   const session = await requireAuth();
   const userId = session.user.id;
