@@ -13,7 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { purchaseWishlistItem } from "@/lib/actions/wishlist";
-import { formatMoney, type CurrencyCode } from "@/lib/money";
+import { type CurrencyCode } from "@/lib/money";
+import { Money } from "@/components/ui/money";
 import { toast } from "sonner";
 import { CheckCircle2, PartyPopper } from "lucide-react";
 import confetti from "canvas-confetti";
@@ -88,9 +89,11 @@ function PurchaseFormContent({
           <p className="text-xs text-muted-foreground mt-1">
             Original estimate:{" "}
             <span className="font-semibold text-foreground">
-              {item.estimatedPrice
-                ? formatMoney(item.estimatedPrice, currency)
-                : "Not set"}
+              {item.estimatedPrice ? (
+                <Money amount={item.estimatedPrice} currency={currency} />
+              ) : (
+                "Not set"
+              )}
             </span>
           </p>
         </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { formatMoney, type CurrencyCode } from "@/lib/money";
+import { type CurrencyCode } from "@/lib/money";
+import { Money } from "@/components/ui/money";
 import { Badge } from "@/components/ui/badge";
 import {
   Sparkles,
@@ -157,9 +158,11 @@ export function WishCard({
             </span>
             <div className="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
               <span className="font-semibold text-slate-700 dark:text-slate-300 tabular-nums">
-                {item.estimatedPrice
-                  ? formatMoney(item.estimatedPrice, currency)
-                  : "Price not set"}
+                {item.estimatedPrice ? (
+                  <Money amount={item.estimatedPrice} currency={currency} />
+                ) : (
+                  "Price not set"
+                )}
               </span>
               {item.targetDate ? (
                 <>
@@ -339,13 +342,17 @@ export function WishCard({
               {isPurchased ? "Spent" : "Estimate"}
             </span>
             <span className="text-sm sm:text-base font-black text-slate-900 dark:text-white tabular-nums">
-              {isPurchased
-                ? item.actualPrice
-                  ? formatMoney(item.actualPrice, currency)
-                  : "Price unrecorded"
-                : item.estimatedPrice
-                ? formatMoney(item.estimatedPrice, currency)
-                : "Price not set"}
+              {isPurchased ? (
+                item.actualPrice ? (
+                  <Money amount={item.actualPrice} currency={currency} />
+                ) : (
+                  "Price unrecorded"
+                )
+              ) : item.estimatedPrice ? (
+                <Money amount={item.estimatedPrice} currency={currency} />
+              ) : (
+                "Price not set"
+              )}
             </span>
           </div>
 

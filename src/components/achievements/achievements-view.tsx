@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { formatMoney, type CurrencyCode } from "@/lib/money";
+import { type CurrencyCode } from "@/lib/money";
+import { Money } from "@/components/ui/money";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
@@ -266,9 +267,11 @@ export function AchievementsView({
                         Actual Spending
                       </span>
                       <span className="text-sm sm:text-base font-bold text-emerald-600 dark:text-emerald-400 tabular-nums">
-                        {item.actualPrice
-                          ? formatMoney(item.actualPrice, currency)
-                          : "Not recorded"}
+                        {item.actualPrice ? (
+                          <Money amount={item.actualPrice} currency={currency} />
+                        ) : (
+                          "Not recorded"
+                        )}
                       </span>
                     </div>
 
@@ -278,7 +281,7 @@ export function AchievementsView({
                           Original Estimate
                         </span>
                         <span className="text-xs text-muted-foreground tabular-nums">
-                          {formatMoney(item.estimatedPrice, currency)}
+                          <Money amount={item.estimatedPrice} currency={currency} />
                         </span>
                       </div>
                     ) : null}

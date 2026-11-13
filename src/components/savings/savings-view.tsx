@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { formatMoney, type CurrencyCode } from "@/lib/money";
+import { type CurrencyCode } from "@/lib/money";
+import { Money } from "@/components/ui/money";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import {
@@ -105,8 +106,8 @@ export function SavingsView({
           <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             Total Target Across Plans
           </span>
-          <div className="mt-2 text-2xl font-black tracking-tight text-slate-900 dark:text-white tabular-nums">
-            {formatMoney(totalTarget, currency)}
+          <div className="mt-2 text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white tabular-nums">
+            <Money amount={totalTarget} currency={currency} />
           </div>
         </div>
 
@@ -114,8 +115,8 @@ export function SavingsView({
           <span className="text-[11px] font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
             Total Saved So Far
           </span>
-          <div className="mt-2 text-2xl font-black tracking-tight text-emerald-600 dark:text-emerald-400 tabular-nums">
-            {formatMoney(totalSaved, currency)}
+          <div className="mt-2 text-xl sm:text-2xl font-black tracking-tight text-emerald-600 dark:text-emerald-400 tabular-nums">
+            <Money amount={totalSaved} currency={currency} />
           </div>
         </div>
 
@@ -150,13 +151,13 @@ export function SavingsView({
                     <p className="text-xs text-slate-500 dark:text-slate-400">
                       Target:{" "}
                       <span className="font-semibold text-slate-700 dark:text-slate-300 tabular-nums">
-                        {formatMoney(plan.projection.targetAmount, currency)}
+                        <Money amount={plan.projection.targetAmount} currency={currency} />
                       </span>
                       {plan.plannedMonthlyContribution ? (
                         <span>
                           {" "}
                           • Planned Monthly:{" "}
-                          {formatMoney(plan.plannedMonthlyContribution, currency)}
+                          <Money amount={plan.plannedMonthlyContribution} currency={currency} />
                         </span>
                       ) : null}
                     </p>
@@ -184,14 +185,14 @@ export function SavingsView({
 
               {/* Progress & Projection bar */}
               <div className="space-y-2">
-                <div className="flex justify-between text-xs">
+                <div className="flex flex-wrap justify-between gap-2 text-xs">
                   <span className="font-semibold text-emerald-600 dark:text-emerald-400 tabular-nums">
-                    Saved: {formatMoney(plan.projection.totalSaved, currency)} (
+                    Saved: <Money amount={plan.projection.totalSaved} currency={currency} /> (
                     {plan.projection.percentageSaved}%)
                   </span>
                   <span className="text-slate-500 tabular-nums font-medium">
                     Remaining:{" "}
-                    {formatMoney(plan.projection.remainingAmount, currency)}
+                    <Money amount={plan.projection.remainingAmount} currency={currency} />
                   </span>
                 </div>
                 <Progress
@@ -238,7 +239,7 @@ export function SavingsView({
                       >
                         <div className="flex items-center gap-3">
                           <span className="font-bold text-emerald-600 dark:text-emerald-400 tabular-nums">
-                            +{formatMoney(entry.amount, currency)}
+                            +<Money amount={entry.amount} currency={currency} />
                           </span>
                           <span className="text-slate-400 font-medium">
                             {new Date(entry.date).toLocaleDateString()}

@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { formatMoney, type CurrencyCode } from "@/lib/money";
+import { type CurrencyCode } from "@/lib/money";
+import { Money } from "@/components/ui/money";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -249,9 +250,11 @@ export function VisionBoardView({
 
                 <div className="mt-4 pt-3.5 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between text-xs">
                   <span className="font-bold text-slate-900 dark:text-slate-100 tabular-nums">
-                    {wish.estimatedPrice
-                      ? formatMoney(wish.estimatedPrice, currency)
-                      : "Price not set"}
+                    {wish.estimatedPrice ? (
+                      <Money amount={wish.estimatedPrice} currency={currency} />
+                    ) : (
+                      "Price not set"
+                    )}
                   </span>
                   <Link
                     href="/wishlist"

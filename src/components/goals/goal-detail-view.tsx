@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { formatMoney, type CurrencyCode } from "@/lib/money";
+import { type CurrencyCode } from "@/lib/money";
+import { Money } from "@/components/ui/money";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -424,9 +425,11 @@ export function GoalDetailView({
                         {item.name}
                       </h4>
                       <p className="text-[11px] text-slate-400 dark:text-slate-500">
-                        {item.estimatedPrice
-                          ? formatMoney(item.estimatedPrice, currency)
-                          : "Price unestimated"}
+                        {item.estimatedPrice ? (
+                          <Money amount={item.estimatedPrice} currency={currency} />
+                        ) : (
+                          "Price unestimated"
+                        )}
                       </p>
                     </div>
                   </div>

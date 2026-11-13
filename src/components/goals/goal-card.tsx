@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { formatMoney, type CurrencyCode } from "@/lib/money";
+import { type CurrencyCode } from "@/lib/money";
+import { Money } from "@/components/ui/money";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import {
@@ -182,7 +183,7 @@ export function GoalCard({ goal, currency = "IDR", onEdit }: GoalCardProps) {
                   Target Amount
                 </span>
                 <span className="text-xs font-black text-slate-900 dark:text-white tabular-nums">
-                  {formatMoney(goal.targetAmount, currency)}
+                  <Money amount={goal.targetAmount} currency={currency} />
                 </span>
               </>
             ) : (

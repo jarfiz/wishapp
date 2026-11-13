@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { formatMoney, type CurrencyCode } from "@/lib/money";
+import { type CurrencyCode } from "@/lib/money";
+import { Money } from "@/components/ui/money";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -117,8 +118,8 @@ export function OverviewView({
             </div>
           </div>
           <div className="mt-3.5">
-            <div className="text-2xl font-black tracking-tight text-slate-900 dark:text-white tabular-nums">
-              {formatMoney(financialSummary.remainingEstimatedCost, currency)}
+            <div className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white tabular-nums">
+              <Money amount={financialSummary.remainingEstimatedCost} currency={currency} />
             </div>
             <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">
               Across {financialSummary.totalActiveCount} active wishes
@@ -137,8 +138,8 @@ export function OverviewView({
             </div>
           </div>
           <div className="mt-3.5">
-            <div className="text-2xl font-black tracking-tight text-slate-900 dark:text-white tabular-nums">
-              {formatMoney(financialSummary.activeEstimatedTotal, currency)}
+            <div className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white tabular-nums">
+              <Money amount={financialSummary.activeEstimatedTotal} currency={currency} />
             </div>
             <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">
               Sum of all recorded estimates
@@ -157,8 +158,8 @@ export function OverviewView({
             </div>
           </div>
           <div className="mt-3.5">
-            <div className="text-2xl font-black tracking-tight text-emerald-600 dark:text-emerald-400 tabular-nums">
-              {formatMoney(totalSavingsRecorded, currency)}
+            <div className="text-xl sm:text-2xl font-black tracking-tight text-emerald-600 dark:text-emerald-400 tabular-nums">
+              <Money amount={totalSavingsRecorded} currency={currency} />
             </div>
             <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">
               Across active savings plans
@@ -289,8 +290,8 @@ export function OverviewView({
                         {plan.displayName}
                       </span>
                       <span className="text-slate-500 tabular-nums font-medium">
-                        {formatMoney(plan.projection.totalSaved, currency)} /{" "}
-                        {formatMoney(plan.projection.targetAmount, currency)}
+                        <Money amount={plan.projection.totalSaved} currency={currency} /> /{" "}
+                        <Money amount={plan.projection.targetAmount} currency={currency} />
                       </span>
                     </div>
                     <Progress
@@ -349,9 +350,11 @@ export function OverviewView({
                         {item.name}
                       </p>
                       <p className="text-xs text-slate-400 dark:text-slate-500">
-                        {item.estimatedPrice
-                          ? formatMoney(item.estimatedPrice, currency)
-                          : "Price unestimated"}
+                        {item.estimatedPrice ? (
+                          <Money amount={item.estimatedPrice} currency={currency} />
+                        ) : (
+                          "Price unestimated"
+                        )}
                       </p>
                     </div>
                   </div>
@@ -405,7 +408,7 @@ export function OverviewView({
                         {item.status === "purchased" ? (
                           <span className="text-emerald-500 font-semibold">Purchased</span>
                         ) : item.estimatedPrice ? (
-                          formatMoney(item.estimatedPrice, currency)
+                          <Money amount={item.estimatedPrice} currency={currency} />
                         ) : (
                           "Price not set"
                         )}
