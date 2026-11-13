@@ -55,3 +55,4 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
 export function useExchangeRates() {
   return React.useContext(CurrencyContext);
 }
+
