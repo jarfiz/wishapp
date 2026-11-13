@@ -4,6 +4,9 @@ import {
   calculateSavingsProjection,
   formatMoney,
   parseMoneyInput,
+  convertCurrency,
+  formatDualMoney,
+  DEFAULT_RATES_FROM_USD,
 } from "@/lib/money";
 import {
   wishlistItemSchema,
@@ -204,5 +207,42 @@ describe("Achievement Registry Integrity", () => {
       expect(ACHIEVEMENTS[key].title).toBeTruthy();
       expect(ACHIEVEMENTS[key].xp).toBeGreaterThan(0);
     }
+  });
+});
+
+describe("Dual Currency Conversion and Formatting", () => {
+  const testRates = {
+    ...DEFAULT_RATES_FROM_USD,
+    USD: 1,
+    IDR: 16000,
+  };
+
+  it("converts between IDR and USD accurately", () => {
+    expect(convertCurrency(1600000, "IDR", "USD", testRates)).toBe(100);
+    expect(convertCurrency(50, "USD", "IDR", testRates)).toBe(800000);
+    expect(convertCurrency(250000, "IDR", "IDR", testRates)).toBe(250000);
+  });
+
+  it("formats dual money with IDR primary and USD secondary", () => {
+    const dual = formatDualMoney(1600000, "IDR", testRates);
+    expect(dual.isValid).toBe(true);
+    expect(dual.secondaryCurrency).toBe("USD");
+    expect(dual.primary).toContain("1.600.000");
+    expect(dual.secondary).toBe("$100.00");
+  });
+
+  it("formats dual money with USD primary and IDR secondary", () => {
+    const dual = formatDualMoney(100, "USD", testRates);
+    expect(dual.isValid).toBe(true);
+    expect(dual.secondaryCurrency).toBe("IDR");
+    expect(dual.primary).toBe("$100.00");
+    expect(dual.secondary).toContain("1.600.000");
+  });
+
+  it("handles null or invalid amounts gracefully", () => {
+    const dual = formatDualMoney(null, "IDR", testRates);
+    expect(dual.isValid).toBe(false);
+    expect(dual.primary).toBe("-");
+    expect(dual.secondary).toBe("-");
   });
 });

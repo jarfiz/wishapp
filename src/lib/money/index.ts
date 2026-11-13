@@ -83,6 +83,92 @@ export function formatMoney(
   }
 }
 
+export const DEFAULT_RATES_FROM_USD: Record<CurrencyCode, number> = {
+  USD: 1,
+  IDR: 16200,
+  EUR: 0.92,
+  GBP: 0.79,
+  SGD: 1.34,
+  JPY: 153,
+};
+
+/**
+ * Converts a monetary amount from one currency to another using USD-base rates.
+ */
+export function convertCurrency(
+  amount: number,
+  from: CurrencyCode,
+  to: CurrencyCode,
+  ratesFromUsd: Record<CurrencyCode, number> = DEFAULT_RATES_FROM_USD
+): number {
+  if (from === to) return amount;
+  const fromRate = ratesFromUsd[from] || DEFAULT_RATES_FROM_USD[from] || 1;
+  const toRate = ratesFromUsd[to] || DEFAULT_RATES_FROM_USD[to] || 1;
+  const amountInUsd = amount / fromRate;
+  return amountInUsd * toRate;
+}
+
+export interface DualMoneyFormatted {
+  primary: string;
+  secondary: string;
+  secondaryCurrency: CurrencyCode;
+  usd: string;
+  idr: string;
+  isValid: boolean;
+}
+
+/**
+ * Formats a monetary amount into both the primary currency and its USD/IDR counterpart.
+ */
+export function formatDualMoney(
+  amount: number | string | null | undefined,
+  primaryCurrency: CurrencyCode = "IDR",
+  ratesFromUsd: Record<CurrencyCode, number> = DEFAULT_RATES_FROM_USD
+): DualMoneyFormatted {
+  if (amount === null || amount === undefined || amount === "") {
+    return {
+      primary: "-",
+      secondary: "-",
+      secondaryCurrency: primaryCurrency === "USD" ? "IDR" : "USD",
+      usd: "-",
+      idr: "-",
+      isValid: false,
+    };
+  }
+
+  const num = typeof amount === "string" ? parseFloat(amount) : amount;
+  if (isNaN(num)) {
+    return {
+      primary: "-",
+      secondary: "-",
+      secondaryCurrency: primaryCurrency === "USD" ? "IDR" : "USD",
+      usd: "-",
+      idr: "-",
+      isValid: false,
+    };
+  }
+
+  const usdAmount = convertCurrency(num, primaryCurrency, "USD", ratesFromUsd);
+  const idrAmount = convertCurrency(num, primaryCurrency, "IDR", ratesFromUsd);
+
+  const primary = formatMoney(num, primaryCurrency);
+  const usd = formatMoney(usdAmount, "USD");
+  const idr = formatMoney(Math.round(idrAmount), "IDR");
+
+  const secondaryCurrency: CurrencyCode =
+    primaryCurrency === "USD" ? "IDR" : "USD";
+  const secondary = secondaryCurrency === "IDR" ? idr : usd;
+
+  return {
+    primary,
+    secondary,
+    secondaryCurrency,
+    usd,
+    idr,
+    isValid: true,
+  };
+}
+
 /**
  * Parse an input amount safely to a normalized number or null if invalid/empty.
  */
