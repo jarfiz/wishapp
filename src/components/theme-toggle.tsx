@@ -35,3 +35,4 @@ export function ThemeToggle({ className, onThemeChange }: ThemeToggleProps) {
     </button>
   );
 }
+
